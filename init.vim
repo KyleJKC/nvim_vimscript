@@ -21,7 +21,7 @@ if empty(glob('~/.config/nvim/_machine_specific.vim'))
   let has_machine_specific_file = 0
   silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
 endif
-source $XDG_CONFIG_HOME/nvim/_machine_specific.vim
+source ~/.config/nvim/_machine_specific.vim
 
 "==========
 "编辑器设置
@@ -358,7 +358,6 @@ let g:mkdp_refresh_slow = 0
 let g:mkdp_command_for_global = 0
 let g:mkdp_open_to_the_world = 0
 let g:mkdp_open_ip = ''
-let g:mkdp_browser = 'google-chrome-stable'
 let g:mkdp_echo_preview_url = 1
 let g:mkdp_browserfunc = ''
 let g:mkdp_preview_options = {
@@ -515,3 +514,10 @@ endif
 
 set background=dark
 color hybrid_material
+
+"========
+"善后设置
+"========
+if has_machine_specific_file == 0
+	exec "e ~/.config/nvim/_machine_specific.vim"
+endif
