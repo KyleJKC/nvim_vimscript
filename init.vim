@@ -16,12 +16,12 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-let has_machine_specific_file = 1
-if empty(glob('~/.config/nvim/_machine_specific.vim'))
-  let has_machine_specific_file = 0
-  silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
+let has_special_config_file = 1
+if empty(glob('~/.config/nvim/_special_config.vim'))
+  let has_special_config_file = 0
+  silent! exec "!cp ~/.config/nvim/default_configs/_special_config_default.vim ~/.config/nvim/_special_config.vim"
 endif
-source ~/.config/nvim/_machine_specific.vim
+source ~/.config/nvim/_special_config.vim
 
 "==========
 "编辑器设置
@@ -518,6 +518,6 @@ color hybrid_material
 "========
 "善后设置
 "========
-if has_machine_specific_file == 0
-	exec "e ~/.config/nvim/_machine_specific.vim"
+if has_special_config_file == 0
+	exec "e ~/.config/nvim/_special_config.vim"
 endif
