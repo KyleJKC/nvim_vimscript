@@ -11,10 +11,17 @@
 "首次安装使用
 "============
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
-	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
+let has_machine_specific_file = 1
+if empty(glob('~/.config/nvim/_machine_specific.vim'))
+  let has_machine_specific_file = 0
+  silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
+endif
+source $XDG_CONFIG_HOME/nvim/_machine_specific.vim
 
 "==========
 "编辑器设置
@@ -26,15 +33,26 @@ set cursorline
 set wrap
 set showcmd
 set encoding=UTF-8
-set scrolloff=5
+set scrolloff=4
 set mouse=a
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set autoindent
+set indentexpr=
+set foldmethod=indent
+set foldlevel=99
+set foldenable
+set ttyfast
 let mapleader=" "
 vnoremap Y "+y
 exec "nohlsearch"
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 "============
 "基本键位设置
@@ -54,6 +72,7 @@ noremap E I
 noremap R A
 noremap h w
 noremap c d
+noremap f c
 noremap m r
 noremap ; :
 inoremap jj <esc>
@@ -77,69 +96,82 @@ map <F2> :source ~/.config/nvim/init.vim<CR>
 map <F3> :PlugInstall<CR>
 map <F4> :PlugUpdate<CR>
 
+map <A-d> <C-w>l
+map <A-w> <C-w>k
+map <A-a> <C-w>h
+map <A-s> <C-w>j
+
+noremap tn :tabe<CR>
+noremap ta :-tabnext<CR>
+noremap td :+tabnext<CR>
+
+noremap lg :lazygit<CR>
+
+map <LEADER>sc :set spell!<CR>
+map <LEADER><LEADER> <ESC>/<++><CR>:nohlsearch<CR>f4d
+
 "========
 "语言运行
 "========
-noremap q :call CompileRunGcc()<CR>
+noremap <A-r> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
-	exec "w"
-	if &filetype == 'c'
-		exec "!g++ % -o %<"
-		exec "!time ./%<"
-	elseif &filetype == 'cpp'
-		set splitbelow
-		exec "!g++ -std=c++11 % -Wall -o %<"
-		:sp
-		:res -15
-		:term ./%<
-	elseif &filetype == 'java'
-		exec "!javac %"
-		exec "!time java %<"
-	elseif &filetype == 'sh'
-		:!time bash %
-	elseif &filetype == 'python'
-		set splitbelow
-		:sp
-		:term python3 %
-	elseif &filetype == 'html'
-		silent! exec "!".g:mkdp_browser." % &"
-	elseif &filetype == 'markdown'
-		exec "MarkdownPreview"
-	elseif &filetype == 'tex'
-		silent! exec "VimtexStop"
-		silent! exec "VimtexCompile"
-	elseif &filetype == 'dart'
-		exec "CocCommand flutter.run -d ".g:flutter_default_device
-		CocCommand flutter.dev.openDevLog
-	elseif &filetype == 'javascript'
-		set splitbelow
-		:sp
-		:term export DEBUG="INFO,ERROR,WARNING"; node --trace-warnings .
-	elseif &filetype == 'go'
-		set splitbelow
-		:sp
-		:term go run .
-	endif
+  exec "w"
+  if &filetype == 'c'
+    exec "!g++ % -o %<"
+    exec "!time ./%<"
+  elseif &filetype == 'cpp'
+    set splitbelow
+    exec "!g++ -std=c++11 % -Wall -o %<"
+    :sp
+    :term ./%<
+  elseif &filetype == 'java'
+    exec "!javac %"
+    exec "!time java %<"
+  elseif &filetype == 'sh'
+    :!time bash %
+  elseif &filetype == 'python'
+    set splitbelow
+    :sp
+    :term python3 %
+  elseif &filetype == 'html'
+    silent! exec "!".g:mkdp_browser." % &"
+  elseif &filetype == 'markdown'
+    exec "MarkdownPreview"
+  elseif &filetype == 'tex'
+    silent! exec "VimtexStop"
+    silent! exec "VimtexCompile"
+  elseif &filetype == 'dart'
+    exec "CocCommand flutter.run -d ".g:flutter_default_device
+    CocCommand flutter.dev.openDevLog
+  elseif &filetype == 'javascript'
+    set splitbelow
+    :sp
+    :term export DEBUG="INFO,ERROR,WARNING"; node --trace-warnings .
+  elseif &filetype == 'go'
+    set splitbelow
+    :sp
+    :term go run .
+  endif
 endfunc
 
 autocmd BufNewFile *.cpp exec ":call CppInit()"
 func CppInit()
-if expand("%:e") == "cpp"
-         call setline(1,"/*")
-         call setline(2,"*******************************************************************")
-         call setline(3,"Author:                KyleJKC")
-         call setline(4,"Date:                  ".strftime("%Y-%m-%d"))
-         call setline(5,"FileName：             ".expand("%"))
-         call setline(6,"Copyright (C):         ".strftime("%Y")." All rights reserved")
-         call setline(7,"*******************************************************************")
-         call setline(8,"*/")
-         call setline(9,"#include<iostream>")
-         call setline(10,"")
-         call setline(11,"int main(int argc, const char *argv[]){")
-         call setline(12,"")
-         call setline(13,"  return 0;")
-         call setline(14,"}")
-endif
+  if expand("%:e") == "cpp"
+    call setline(1,"/*")
+    call setline(2,"*******************************************************************")
+    call setline(3,"Author:                KyleJKC")
+    call setline(4,"Date:                  ".strftime("%Y-%m-%d"))
+    call setline(5,"FileName：             ".expand("%"))
+    call setline(6,"Copyright (C):         ".strftime("%Y")." All rights reserved")
+    call setline(7,"*******************************************************************")
+    call setline(8,"*/")
+    call setline(9,"#include<iostream>")
+    call setline(10,"")
+    call setline(11,"int main(int argc, const char *argv[]){")
+    call setline(12,"")
+    call setline(13,"  return 0;")
+    call setline(14,"}")
+  endif
 endfunc
 autocmd BufNewFile * normal G'
 
@@ -186,14 +218,14 @@ call plug#end()
 "============
 "COC
 let g:coc_global_extensions = [
-  \ 'coc-go', 
-  \ 'coc-html',
-  \ 'coc-json',
-  \ 'coc-python',
-  \ 'coc-snippets',
-  \ 'coc-syntax',
-  \ 'coc-yaml',
-  \ 'coc-yank']
+      \ 'coc-go',
+      \ 'coc-html',
+      \ 'coc-json',
+      \ 'coc-python',
+      \ 'coc-snippets',
+      \ 'coc-syntax',
+      \ 'coc-yaml',
+      \ 'coc-yank']
 set hidden
 set nobackup
 set nowritebackup
@@ -259,6 +291,9 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+"Vim-table-mode设置
+map <LEADER>tm :TableModeToggle<CR>
+
 "Autoformat设置
 nnoremap <LEADER>fm :Autoformat<CR>
 let g:formatdef_custom_js = '"js-beautify -t"'
@@ -273,23 +308,23 @@ let g:which_key_map =  {}
 "UndoTree设置
 nnoremap <F5> :UndotreeToggle<CR>
 if has("persistent_undo")
-    set undodir=$HOME/.undodir
-    set undofile
+  set undodir=$HOME/.undodir
+  set undofile
 endif
 
 "Indentline设置
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 "FZF模糊搜索设置
-set rtp+=/usr/local/opt/fzf
-set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
-set rtp+=/home/david/.linuxbrew/opt/fzf
+" set rtp+=/usr/local/opt/fzf
+" set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
+" set rtp+=/home/david/.linuxbrew/opt/fzf
 noremap <C-p> :Files<CR>
 noremap <C-f> :Rg<CR>
 noremap <C-h> :History<CR>
 "noremap <C-t> :BTags<CR>
 noremap <C-l> :Lines<CR>
-noremap <C-w> :Buffers<CR>
+noremap <C-b> :Buffers<CR>
 noremap <leader>; :History:<CR>
 
 let g:fzf_preview_window = 'right:60%'
@@ -307,10 +342,10 @@ function! s:delete_buffers(lines)
 endfunction
 
 command! BD call fzf#run(fzf#wrap({
-  \ 'source': s:list_buffers(),
-  \ 'sink*': { lines -> s:delete_buffers(lines) },
-  \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
-\ }))
+      \ 'source': s:list_buffers(),
+      \ 'sink*': { lines -> s:delete_buffers(lines) },
+      \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
+      \ }))
 
 noremap <c-d> :BD<CR>
 
@@ -323,20 +358,20 @@ let g:mkdp_refresh_slow = 0
 let g:mkdp_command_for_global = 0
 let g:mkdp_open_to_the_world = 0
 let g:mkdp_open_ip = ''
-let g:mkdp_browser = 'chromium'
+let g:mkdp_browser = 'google-chrome-stable'
 let g:mkdp_echo_preview_url = 1
 let g:mkdp_browserfunc = ''
 let g:mkdp_preview_options = {
-    \ 'mkit': {},
-    \ 'katex': {},
-    \ 'uml': {},
-    \ 'maid': {},
-    \ 'disable_sync_scroll': 0,
-    \ 'sync_scroll_type': 'middle',
-    \ 'hide_yaml_meta': 1,
-    \ 'sequence_diagrams': {},
-    \ 'flowchart_diagrams': {}
-    \ }
+      \ 'mkit': {},
+      \ 'katex': {},
+      \ 'uml': {},
+      \ 'maid': {},
+      \ 'disable_sync_scroll': 0,
+      \ 'sync_scroll_type': 'middle',
+      \ 'hide_yaml_meta': 1,
+      \ 'sequence_diagrams': {},
+      \ 'flowchart_diagrams': {}
+      \ }
 let g:mkdp_markdown_css = ''
 let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
@@ -408,19 +443,19 @@ function! s:defx_mappings() abort
 endfunction
 
 function! s:defx_toggle_tree() abort
-    " Open current file, or toggle directory expand/collapse
-    if defx#is_directory()
-        return defx#do_action('open_or_close_tree')
-    endif
-    return defx#do_action('multi', ['drop'])
+  " Open current file, or toggle directory expand/collapse
+  if defx#is_directory()
+    return defx#do_action('open_or_close_tree')
+  endif
+  return defx#do_action('multi', ['drop'])
 endfunction
 
 function! s:defx_toggle_tree() abort
-    " Open current file, or toggle directory expand/collapse
-    if defx#is_directory()
-        return defx#do_action('open_or_close_tree')
-    endif
-    return defx#do_action('multi', ['drop'])
+  " Open current file, or toggle directory expand/collapse
+  if defx#is_directory()
+    return defx#do_action('open_or_close_tree')
+  endif
+  return defx#do_action('multi', ['drop'])
 endfunction
 
 "NerdCommenter设置
@@ -449,12 +484,12 @@ let g:AutoPairs = {',':' ','(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '
 
 "Starify设置
 let g:startify_custom_header = [
-\' ____                                 __    ____                           ',
-\'|  _ \ _____      _____ _ __    ___  / _|  / ___| __ _ _ __ ___   ___ _ __ ',
-\'| |_) / _ \ \ /\ / / _ \  __|  / _ \| |_  | |  _ / _` |  _ ` _ \ / _ \  __|',
-\'|  __/ (_) \ V  V /  __/ |    | (_) |  _| | |_| | (_| | | | | | |  __/ |   ',
-\'|_|   \___/ \_/\_/ \___|_|     \___/|_|    \____|\__,_|_| |_| |_|\___|_|   ',
-\]
+      \'__  _____ __  __',
+      \'\ \/ /_ _|  \/  |',
+      \' \  / | || |\/| |',
+      \' /  \ | || |  | |',
+      \'/_/\_\___|_|  |_|',
+      \]
 
 "Airline设置
 let g:airline_theme="hybrid"
@@ -463,10 +498,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#whitespace#symbol = '!'
-if has('win32')
-  set guifont=Hermit:h13
-  set guifontwide=Microsoft_YaHei_Mono:h12
-endif
 
 "========
 "主题设置
@@ -476,11 +507,11 @@ let g:enable_bold_font=1
 let g:enable_italic_font=1
 let &t_ut=''
 if (has("nvim"))
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 if (has("termguicolors"))
-set termguicolors
+  set termguicolors
 endif
 
 set background=dark
-color hybrid_material 
+color hybrid_material
