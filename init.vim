@@ -190,10 +190,10 @@ call plug#begin('~/.config/nvim/plugged')
 "eg：Plug 'user/reponsitory'
 
 "美化插件
-" Plug 'hardcoreplayers/spaceline.vim'
+Plug 'hardcoreplayers/spaceline.vim'
 Plug 'ryanoasis/vim-devicons'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 " Plug 'yggdroot/indentline'
 " Plug 'mhinz/vim-startify'
 Plug 'hardcoreplayers/dashboard-nvim'
@@ -583,25 +583,26 @@ let g:dashboard_custom_shortcut={
       \ 'book_marks'         : 'SPC f b',
       \ }
 
-"Airline设置
-let g:airline_theme="hybrid"
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#whitespace#symbol = '!'
+" " Airline设置
+" let g:airline_theme="hybrid"
+" let g:airline_powerline_fonts = 1
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#buffer_nr_show = 1
+" let g:airline#extensions#whitespace#enabled = 0
+" let g:airline#extensions#whitespace#symbol = '!'
 
-" "spaceline设置
-" let g:spaceline_seperate_style= 'slant-cons'
+"spaceline设置
+let g:spaceline_seperate_style= 'slant-cons'
 
 "========
 "主题设置
 "========
 let g:enable_bold_font=1
 let g:enable_italic_font=1
-" let g:hybrid_transparent_background = 1
+let g:hybrid_transparent_background = 1
 let g:oceanic_material_enable_bold = 1
 let g:oceanic_material_enable_italic = 1
+let g:oceanic_material_transparent_background = 1
 let &t_ut=''
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
