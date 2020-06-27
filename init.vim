@@ -113,7 +113,7 @@ noremap tn :tabe<CR>
 noremap ta :-tabnext<CR>
 noremap td :+tabnext<CR>
 
-noremap lg :lazygit<CR>
+noremap lg :FloatermNew lazygit<CR>
 
 map <LEADER>sc :set spell!<CR>
 map <LEADER><LEADER> <ESC>/<++><CR>:nohlsearch<CR>j4d
