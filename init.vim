@@ -1,11 +1,11 @@
 "
 "███╗   ███╗██╗   ██╗██╗   ██╗██╗███╗   ███╗██████╗  ██████╗
 "████╗ ████║╚██╗ ██╔╝██║   ██║██║████╗ ████║██╔══██╗██╔════╝
-"██╔████╔██║ ╚████╔╝ ██║   ██║██║██╔████╔██║██████╔╝██║     
-"██║╚██╔╝██║  ╚██╔╝  ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║     
+"██╔████╔██║ ╚████╔╝ ██║   ██║██║██╔████╔██║██████╔╝██║
+"██║╚██╔╝██║  ╚██╔╝  ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "██║ ╚═╝ ██║   ██║    ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "╚═╝     ╚═╝   ╚═╝     ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-                                                          
+
 " Github@KyleJKC
 "Bilibili@kyleJKC
 
@@ -33,6 +33,7 @@ set number
 set relativenumber
 set cursorline
 set wrap
+set wildmenu
 set showcmd
 set encoding=UTF-8
 set scrolloff=4
@@ -192,17 +193,16 @@ call plug#begin('~/.config/nvim/plugged')
 "美化插件
 Plug 'hardcoreplayers/spaceline.vim'
 Plug 'ryanoasis/vim-devicons'
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-" Plug 'yggdroot/indentline'
-" Plug 'mhinz/vim-startify'
-Plug 'hardcoreplayers/dashboard-nvim'
+Plug 'yggdroot/indentline'
+Plug 'kylejkc/dashboard-nvim'
 "主题插件
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'rakr/vim-one'
 Plug 'sainnhe/forest-night'
 Plug 'hardcoreplayers/oceanic-material'
 "功能插件
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'chrisbra/changesPlugin'
@@ -213,6 +213,7 @@ Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'kristijanhusak/defx-icons'
 Plug 'junegunn/vim-peekaboo'
 Plug 'mbbill/undotree'
+Plug 'voldikss/vim-floaterm'
 Plug 'Chiel92/vim-autoformat'
 Plug 'honza/vim-snippets'
 Plug 'dhruvasagar/vim-table-mode'
@@ -307,6 +308,25 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+"floaterm设置
+let g:floaterm_position = 'center'
+let g:floaterm_wintype = 'floating'
+noremap <LEADER>ftn :FloatermNew<CR>
+noremap <LEADER>ftk :FloatermKill<CR>
+
+"Goyo设置
+noremap <LEADER>gy :Goyo<CR>
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
+let g:limelight_conceal_guifg = 'DarkGray'
+let g:limelight_conceal_guifg = '#777777'
+let g:limelight_default_coefficient = 0.7
+let g:limelight_paragraph_span = 1
+let g:limelight_bop = '^\s'
+let g:limelight_eop = '\ze\n^\s'
+let g:limelight_priority = -1
 "Easymotion设置
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_do_shade = 0
@@ -322,11 +342,11 @@ let g:vista_default_executive = 'ctags'
 let g:vista_fzf_preview = ['right:50%']
 let g:vista#renderer#enable_icon = 1
 let g:vista#renderer#icons = {
-\   "function": "\uf794",
-\   "variable": "\uf71b",
-\  }
+      \   "function": "\uf794",
+      \   "variable": "\uf71b",
+      \  }
 " function! NearestMethodOrFunction() abort
-" 	return get(b:, 'vista_nearest_method_or_function', '')
+"   return get(b:, 'vista_nearest_method_or_function', '')
 " endfunction
 " set statusline+=%{NearestMethodOrFunction()}
 " autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
@@ -353,7 +373,11 @@ if has("persistent_undo")
 endif
 
 " "Indentline设置
-" let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_enabled = 1
+let g:indentLine_char='┆'
+let g:indentLine_fileTypeExclude = ['defx', 'denite', 'dashboard', 'tagbar', 'vista_kind', 'vista']
+let g:indentLine_concealcursor = 'niv'
+let g:indentLine_showFirstIndentLevel =1
 
 "FZF模糊搜索设置
 noremap <C-p> :Files<CR>
@@ -503,23 +527,23 @@ endfunction
 
 " Rainbow_Parenthess设置
 let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
+      \ ['brown',       'RoyalBlue3'],
+      \ ['Darkblue',    'SeaGreen3'],
+      \ ['darkgray',    'DarkOrchid3'],
+      \ ['darkgreen',   'firebrick3'],
+      \ ['darkcyan',    'RoyalBlue3'],
+      \ ['darkred',     'SeaGreen3'],
+      \ ['darkmagenta', 'DarkOrchid3'],
+      \ ['brown',       'firebrick3'],
+      \ ['gray',        'RoyalBlue3'],
+      \ ['black',       'SeaGreen3'],
+      \ ['darkmagenta', 'DarkOrchid3'],
+      \ ['Darkblue',    'firebrick3'],
+      \ ['darkgreen',   'RoyalBlue3'],
+      \ ['darkcyan',    'SeaGreen3'],
+      \ ['darkred',     'DarkOrchid3'],
+      \ ['red',         'firebrick3'],
+      \ ]
 let g:rbpt_max = 16
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
@@ -582,14 +606,6 @@ let g:dashboard_custom_shortcut={
       \ 'find_word'          : 'SPC f a',
       \ 'book_marks'         : 'SPC f b',
       \ }
-
-" " Airline设置
-" let g:airline_theme="hybrid"
-" let g:airline_powerline_fonts = 1
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#buffer_nr_show = 1
-" let g:airline#extensions#whitespace#enabled = 0
-" let g:airline#extensions#whitespace#symbol = '!'
 
 "spaceline设置
 let g:spaceline_seperate_style= 'slant-cons'
