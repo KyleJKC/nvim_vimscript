@@ -327,6 +327,36 @@ let g:limelight_paragraph_span = 1
 let g:limelight_bop = '^\s'
 let g:limelight_eop = '\ze\n^\s'
 let g:limelight_priority = -1
+function! s:goyo_enter()
+	if has('gui_running')
+		set fullscreen
+		set background=light
+		set linespace=7
+	elseif exists('$TMUX')
+		silent !tmux set status off
+	endif
+	let g:loaded_spaceline=0
+	Limelight
+endfunction
+function! s:goyo_leave()
+	if has('gui_running')
+		set nofullscreen
+		set background=dark
+		set linespace=0
+	elseif exists('$TMUX')
+		silent !tmux set status on
+	endif
+	let g:loaded_spaceline =1
+	Limelight!
+endfunction
+augroup user_plugin_goyo
+	autocmd!
+	autocmd! User GoyoEnter
+	autocmd! User GoyoLeave
+	autocmd  User GoyoEnter nested call <SID>goyo_enter()
+	autocmd  User GoyoLeave nested call <SID>goyo_leave()
+augroup END
+
 "Easymotion设置
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_do_shade = 0
@@ -608,7 +638,7 @@ let g:dashboard_custom_shortcut={
       \ }
 
 "spaceline设置
-let g:spaceline_seperate_style= 'slant-cons'
+" let g:spaceline_seperate_style= 'arrow-fade'
 
 "========
 "主题设置
