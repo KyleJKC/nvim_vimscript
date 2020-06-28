@@ -155,6 +155,8 @@ Plug 'rakr/vim-one'
 Plug 'sainnhe/forest-night'
 Plug 'hardcoreplayers/oceanic-material'
 "功能插件
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+Plug 'rhysd/accelerated-jk'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'easymotion/vim-easymotion'
@@ -238,6 +240,29 @@ augroup user_plugin_goyo
   autocmd  User GoyoLeave nested call <SID>goyo_leave()
 augroup END
 
+"Accelerated-ws设置
+nmap s <Plug>(accelerated_jk_gj)
+nmap w <Plug>(accelerated_jk_gk)
+
+"Clap设置
+let g:clap_cache_directory = $DATA_PATH . '/clap'
+let g:clap_theme = 'material_design_dark'
+let g:clap_current_selection_sign= { 'text': '➤', 'texthl': "ClapCurrentSelectionSign", "linehl": "ClapCurrentSelection"}
+let g:clap_layout = { 'relative': 'editor' }
+let g:clap_enable_icon = 1
+let g:clap_search_box_border_style = 'curve'
+let g:clap_provider_grep_enable_icon = 1
+let g:clap_prompt_format = '%spinner%%forerunner_status% %provider_id%: '
+
+function! s:ClapSymbolHL() abort
+  let s:current_bgcolor = synIDattr(hlID("Normal"), "bg")
+  if s:current_bgcolor == ''
+    hi ClapSymbol guibg=NONE ctermbg=NONE
+  endif
+endfunction
+
+autocmd User ClapOnEnter call s:ClapSymbolHL()
+
 "Easymotion设置
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_do_shade = 0
@@ -285,25 +310,18 @@ endif
 " "Indentline设置
 let g:indentLine_enabled = 1
 let g:indentLine_char='┆'
-let g:indentLine_fileTypeExclude = ['denite', 'dashboard', 'tagbar', 'vista_kind', 'vista']
+let g:indentLine_fileTypeExclude = ['defx', 'denite', 'dashboard', 'tagbar', 'vista_kind', 'vista']
 let g:indentLine_concealcursor = 'niv'
 let g:indentLine_showFirstIndentLevel =1
 
 "FZF模糊搜索设置
-noremap <C-p> :Files<CR>
-noremap <C-f> :Rg<CR>
-noremap <C-h> :History<CR>
-"noremap <C-t> :BTags<CR>
-noremap <C-l> :Lines<CR>
-noremap <C-b> :Buffers<CR>
-noremap <leader>; :History:<CR>
-nmap <Leader>ss :<C-u>SessionSave<CR>
-nmap <Leader>sl :<C-u>SessionLoad<CR>
-nnoremap <silent> <Leader>fh :History<CR>
-nnoremap <silent> <Leader>ff :Files<CR>
-nnoremap <silent> <Leader>tc :Colors<CR>
-nnoremap <silent> <Leader>fa :Rg<CR>
-nnoremap <silent> <Leader>fb :Marks<CR>
+nmap <C-z> :<C-u>SessionSave<CR>
+nmap <C-x> :<C-u>SessionLoad<CR>
+nnoremap <silent> <C-h> :History<CR>
+nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <C-t> :Colors<CR>
+nnoremap <silent> <C-f> :Rg<CR>
+nnoremap <silent> <C-m> :Marks<CR>
 
 let g:fzf_preview_window = 'right:60%'
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
@@ -377,15 +395,31 @@ let g:go_info_mode='gopls'
 "Defx设置
 noremap <LEADER>fe :Defx<CR>
 call defx#custom#option('_', {
+      \ 'resume': 1,
       \ 'winwidth': 30,
       \ 'split': 'vertical',
       \ 'direction': 'topleft',
-      \ 'columns': 'indent:git:icons:filename',
       \ 'show_ignored_files': 0,
-      \ 'buffer_name': '',
-      \ 'toggle': 1,
-      \ 'resume': 1
+      \ 'columns': 'indent:git:icons:filename',
+      \ 'root_marker': ' ',
+      \ 'toggle': 1
       \ })
+
+call defx#custom#column('git', {
+      \   'indicators': {
+      \     'Modified'  : '•',
+      \     'Staged'    : '✚',
+      \     'Untracked' : 'ᵁ',
+      \     'Renamed'   : '≫',
+      \     'Unmerged'  : '≠',
+      \     'Ignored'   : 'ⁱ',
+      \     'Deleted'   : '✖',
+      \     'Unknown'   : '⁇'
+      \   }
+      \ })
+
+call defx#custom#column('mark', { 'readonly_icon': '', 'selected_icon': '' })
+
 autocmd FileType defx call s:defx_mappings()
 
 function! s:defx_mappings() abort
@@ -499,12 +533,12 @@ let g:dashboard_custom_header = [
       \ ]
 let g:dashboard_default_executive ='fzf'
 let g:dashboard_custom_shortcut={
-      \ 'last_session'       : 'SPC s l',
-      \ 'find_history'       : 'SPC f h',
-      \ 'find_file'          : 'SPC f f',
-      \ 'change_colorscheme' : 'SPC t c',
-      \ 'find_word'          : 'SPC f a',
-      \ 'book_marks'         : 'SPC f b',
+      \ 'last_session'       : 'Ctrl X',
+      \ 'find_history'       : 'Ctrl H',
+      \ 'find_file'          : 'Ctrl P',
+      \ 'change_colorscheme' : 'Ctrl T',
+      \ 'find_word'          : 'Ctrl F',
+      \ 'book_marks'         : 'Ctrl M',
       \ }
 
 "spaceline设置
@@ -517,15 +551,12 @@ let g:spaceline_colorscheme = 'one'
 let g:enable_bold_font=1
 let g:enable_italic_font=1
 let g:hybrid_transparent_background = 1
-let g:oceanic_material_enable_bold = 1
-let g:oceanic_material_enable_italic = 1
-let g:oceanic_material_transparent_background = 1
 let &t_ut=''
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+" let g:oceanic_material_transparent_background = 1
 set termguicolors
-
 set background=dark
-color hybrid_material
+color oceanic_material
 
 "========
 "善后设置
@@ -539,5 +570,5 @@ if has_language_config_file == 0
 endif
 
 if has_coc_config_file == 0
-  exec "e ~/.config/nvim/plug_configs/_coc_config.vim"
+  exec "e ~/.config/nvim/plug_configs/_coc_config.vim" endif
 endif
