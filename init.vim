@@ -51,7 +51,11 @@ set wildmenu
 set showcmd
 set encoding=UTF-8
 set scrolloff=4
-set mouse=a
+set mouse=nv
+set errorbells
+set visualbell
+set magic
+set path+=**
 set hlsearch
 set incsearch
 set ignorecase
@@ -244,25 +248,6 @@ augroup END
 nmap s <Plug>(accelerated_jk_gj)
 nmap w <Plug>(accelerated_jk_gk)
 
-"Clap设置
-let g:clap_cache_directory = $DATA_PATH . '/clap'
-let g:clap_theme = 'material_design_dark'
-let g:clap_current_selection_sign= { 'text': '➤', 'texthl': "ClapCurrentSelectionSign", "linehl": "ClapCurrentSelection"}
-let g:clap_layout = { 'relative': 'editor' }
-let g:clap_enable_icon = 1
-let g:clap_search_box_border_style = 'curve'
-let g:clap_provider_grep_enable_icon = 1
-let g:clap_prompt_format = '%spinner%%forerunner_status% %provider_id%: '
-
-function! s:ClapSymbolHL() abort
-  let s:current_bgcolor = synIDattr(hlID("Normal"), "bg")
-  if s:current_bgcolor == ''
-    hi ClapSymbol guibg=NONE ctermbg=NONE
-  endif
-endfunction
-
-autocmd User ClapOnEnter call s:ClapSymbolHL()
-
 "Easymotion设置
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_do_shade = 0
@@ -310,7 +295,7 @@ endif
 " "Indentline设置
 let g:indentLine_enabled = 1
 let g:indentLine_char='┆'
-let g:indentLine_fileTypeExclude = ['defx', 'denite', 'dashboard', 'tagbar', 'vista_kind', 'vista']
+let g:indentLine_fileTypeExclude = ['denite', 'dashboard', 'tagbar', 'vista_kind', 'vista']
 let g:indentLine_concealcursor = 'niv'
 let g:indentLine_showFirstIndentLevel =1
 
@@ -346,6 +331,34 @@ command! BD call fzf#run(fzf#wrap({
 noremap <c-d> :BD<CR>
 
 let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.6 } }
+
+"Vim-clap模糊搜索设置
+let g:clap_cache_directory = $DATA_PATH . '/clap'
+let g:clap_theme = 'material_design_dark'
+let g:clap_current_selection_sign= { 'text': '➤', 'texthl': "ClapCurrentSelectionSign", "linehl": "ClapCurrentSelection"}
+let g:clap_layout = { 'relative': 'editor' }
+let g:clap_enable_icon = 1
+let g:clap_search_box_border_style = 'curve'
+let g:clap_provider_grep_enable_icon = 1
+let g:clap_prompt_format = '%spinner%%forerunner_status% %provider_id%: '
+
+function! s:ClapSymbolHL() abort
+  let s:current_bgcolor = synIDattr(hlID("Normal"), "bg")
+  if s:current_bgcolor == ''
+    hi ClapSymbol guibg=NONE ctermbg=NONE
+  endif
+endfunction
+
+autocmd User ClapOnEnter call s:ClapSymbolHL()
+
+nmap <Leader>ss :<C-u>SessionSave<CR>
+nmap <Leader>sl :<C-u>SessionLoad<CR>
+nnoremap <silent> <Leader>fh :<C-u>Clap history<CR>
+nnoremap <silent> <Leader>ff :<C-u>Clap files ++finder=rg --ignore --hidden --files<cr>
+nnoremap <silent> <Leader>tc :<C-u>Clap colors<CR>
+nnoremap <silent> <Leader>fa :<C-u>Clap grep2<CR>
+nnoremap <silent> <Leader>fb :<C-u>Clap marks<CR>
+nnoremap <silent> <Leader>fd :<C-u>Clap filer<CR>
 
 "MarkdownPreview设置
 let g:mkdp_auto_start = 0
@@ -454,7 +467,6 @@ function! s:defx_mappings() abort
 endfunction
 
 function! s:defx_toggle_tree() abort
-  " Open current file, or toggle directory expand/collapse
   if defx#is_directory()
     return defx#do_action('open_or_close_tree')
   endif
@@ -462,7 +474,6 @@ function! s:defx_toggle_tree() abort
 endfunction
 
 function! s:defx_toggle_tree() abort
-  " Open current file, or toggle directory expand/collapse
   if defx#is_directory()
     return defx#do_action('open_or_close_tree')
   endif
@@ -495,14 +506,14 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 "NerdCommenter设置
-let g:NERDSpaceDelims            = 1                                    " 在注释符号后加一个空格
-let g:NERDCompactSexyComs        = 1                                    " 紧凑排布多行注释
-let g:NERDDefaultAlign           = 'left'                               " 逐行注释左对齐
-let g:NERDAltDelims_java         = 1                                    " JAVA 语言使用默认的注释符号
-let g:NERDCustomDelimiters       = {'c': {'left': '/*', 'right': '*/'}} " C 语言注释符号
-let g:NERDCommentEmptyLines      = 1                                    " 允许空行注释
-let g:NERDTrimTrailingWhitespace = 1                                    " 取消注释时删除行尾空格
-let g:NERDToggleCheckAllLines    = 1                                    " 检查选中的行操作是否成功
+let g:NERDSpaceDelims            = 1                                    
+let g:NERDCompactSexyComs        = 1                                    
+let g:NERDDefaultAlign           = 'left'                               
+let g:NERDAltDelims_java         = 1                                   
+let g:NERDCustomDelimiters       = {'c': {'left': '/*', 'right': '*/'}} 
+let g:NERDCommentEmptyLines      = 1                                    
+let g:NERDTrimTrailingWhitespace = 1                                    
+let g:NERDToggleCheckAllLines    = 1                                    
 
 "vim-cpp-enhanced-highlight设置
 let g:cpp_class_scope_highlight = 1
@@ -531,14 +542,22 @@ let g:dashboard_custom_header = [
       \ '                       [KyleJKC]',
       \ '',
       \ ]
-let g:dashboard_default_executive ='fzf'
+" let g:dashboard_default_executive ='fzf'
+" let g:dashboard_custom_shortcut={
+"       \ 'last_session'       : 'Ctrl X',
+"       \ 'find_history'       : 'Ctrl H',
+"       \ 'find_file'          : 'Ctrl P',
+"       \ 'change_colorscheme' : 'Ctrl T',
+"       \ 'find_word'          : 'Ctrl F',
+"       \ 'book_marks'         : 'Ctrl M',
+"       \ }
 let g:dashboard_custom_shortcut={
-      \ 'last_session'       : 'Ctrl X',
-      \ 'find_history'       : 'Ctrl H',
-      \ 'find_file'          : 'Ctrl P',
-      \ 'change_colorscheme' : 'Ctrl T',
-      \ 'find_word'          : 'Ctrl F',
-      \ 'book_marks'         : 'Ctrl M',
+      \ 'last_session' : 'SPC s l',
+      \ 'find_history' : 'SPC f h',
+      \ 'find_file' : 'SPC f f',
+      \ 'change_colorscheme' : 'SPC t c',
+      \ 'find_word' : 'SPC f a',
+      \ 'book_marks' : 'SPC f b',
       \ }
 
 "spaceline设置
@@ -570,5 +589,5 @@ if has_language_config_file == 0
 endif
 
 if has_coc_config_file == 0
-  exec "e ~/.config/nvim/plug_configs/_coc_config.vim" endif
+  exec "e ~/.config/nvim/plug_configs/_coc_config.vim" 
 endif
