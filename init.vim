@@ -69,9 +69,10 @@ set indentexpr=
 set foldmethod=indent
 set foldlevel=99
 set foldenable
+set autochdir
 set ttyfast
 let mapleader=" "
-vnoremap Y "+y
+vnoremap <C-c> "+y
 exec "nohlsearch"
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
