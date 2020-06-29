@@ -12,12 +12,14 @@
 "============
 "首次安装使用
 "============
+"Vim-Plug的下载安装
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
 silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+"特别设置
 let has_special_config_file = 1
 if empty(glob('~/.config/nvim/_special_config.vim'))
 let has_special_config_file = 0
@@ -25,6 +27,7 @@ silent! exec "!cp ~/.config/nvim/default_configs/_special_config_default.vim ~/.
 endif
 source ~/.config/nvim/_special_config.vim
 
+"语言运行
 let has_language_config_file = 1
 if empty(glob('~/.config/nvim/_language_config.vim'))
 let has_language_config_file = 0
@@ -32,6 +35,7 @@ silent! exec "!cp ~/.config/nvim/default_configs/_language_config_default.vim ~/
 endif
 source ~/.config/nvim/_language_config.vim
 
+"COC配置
 let has_coc_config_file = 1
 if empty(glob('~/.config/nvim/plug_configs/_coc_config.vim'))
 let has_coc_config_file = 0
@@ -138,11 +142,6 @@ map <LEADER>sc :set spell!<CR>
 map <LEADER><LEADER> <ESC>/<++><CR>:nohlsearch<CR>j4d
 
 "========
-"语言运行
-"========
-" source ~/.config/nvim/_language_config.vim
-
-"========
 "插件安装
 "========
 call plug#begin('~/.config/nvim/plugged')
@@ -191,8 +190,6 @@ call plug#end()
   "============
   "功能插件设置
   "============
-  "COC
-  source ~/.config/nvim/plug_configs/_coc_config.vim
 
   "floaterm设置
   let g:floaterm_position = 'center'
