@@ -3,6 +3,7 @@ let g:coc_status_warning_sign = '•'
 
 let g:coc_global_extensions = [
       \ 'coc-go',
+      \ 'coc-pairs',
       \ 'coc-html',
       \ 'coc-json',
       \ 'coc-python',
@@ -23,7 +24,7 @@ set nowritebackup
 set cmdheight=2
 set updatetime=300
 set shortmess+=c
-set signcolumn=yes
+set signcolumn=no
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -82,5 +83,5 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-vmap <LEADER>m <Plug>(coc-codeaction-selected)<CR>
-nmap <LEADER>m <Plug>(coc-codeaction-selected)<CR>
+vmap <A-m> <Plug>(coc-codeaction-selected)<CR>
+nmap <A-m> <Plug>(coc-codeaction-selected)<CR>
