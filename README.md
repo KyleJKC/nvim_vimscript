@@ -1,7 +1,7 @@
 # <center>我的Neovim配置！<center>
-![demo_1](./demo_1.png)
-![demo_2](./demo_2.png)
-![demo_3](./demo_3.png)
+![demo_1](./image/demo_1.png)
+![demo_2](./image/demo_2.png)
+![demo_3](./image/demo_3.png)
 
   * **请仔细阅读本介绍文档后使用本配置**
 
