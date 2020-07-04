@@ -3,7 +3,6 @@ let g:coc_status_warning_sign = '•'
 
 let g:coc_global_extensions = [
       \ 'coc-go',
-      \ 'coc-pairs',
       \ 'coc-html',
       \ 'coc-json',
       \ 'coc-python',

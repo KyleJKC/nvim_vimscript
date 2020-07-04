@@ -183,6 +183,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'neoclide/coc.nvim',{'branch':'release'}
 Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
@@ -553,7 +554,7 @@ let g:dashboard_custom_shortcut={
       \ }
 
 "spaceline设置
-" let g:spaceline_seperate_style= 'slant-cons'
+ let g:spaceline_seperate_style= 'slant-cons'
 let g:spaceline_colorscheme = 'one'
 
 "========
