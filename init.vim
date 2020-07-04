@@ -380,7 +380,7 @@ let g:mkdp_markdown_css = ''
 let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
 let g:mkdp_page_title = '「${name}」'
-autocmd Filetype markdown inoremap <bufer> ,f <Esc>/<++><CR>:nohlsearch<CR>"_c4l
+autocmd Filetype markdown inoremap <buffer> ,f <Esc>/<++><CR>:nohlsearch<CR>"_c4l
 autocmd Filetype markdown inoremap <buffer> ,w <Esc>/ <++><CR>:nohlsearch<CR>"_c5l<CR>
 autocmd Filetype markdown inoremap <buffer> ,n ---<Enter><Enter>
 autocmd Filetype markdown inoremap <buffer> ,b **** <++><Esc>F*hi
