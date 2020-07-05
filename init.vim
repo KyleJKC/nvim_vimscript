@@ -151,12 +151,10 @@ call plug#begin('~/.config/nvim/plugged')
 "美化插件
 Plug 'hardcoreplayers/spaceline.vim'
 Plug 'ryanoasis/vim-devicons'
-Plug 'yggdroot/indentline'
 Plug 'hardcoreplayers/dashboard-nvim'
 "主题插件
 Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'rakr/vim-one'
-Plug 'sainnhe/forest-night'
+Plug 'liuchengxu/space-vim-theme'
 Plug 'hardcoreplayers/oceanic-material'
 "功能插件
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
@@ -287,13 +285,6 @@ if has("persistent_undo")
   set undodir=$HOME/.undodir
   set undofile
 endif
-
-"Indentline设置
-let g:indentLine_enabled = 1
-let g:indentLine_char='┆'
-let g:indentLine_fileTypeExclude = ['denite', 'dashboard', 'tagbar', 'vista_kind', 'vista']
-let g:indentLine_concealcursor = 'niv'
-let g:indentLine_showFirstIndentLevel =1
 
 "FZF模糊搜索设置
 nmap <C-z> :<C-u>SessionSave<CR>
@@ -554,7 +545,7 @@ let g:dashboard_custom_shortcut={
       \ }
 
 "spaceline设置
- let g:spaceline_seperate_style= 'slant-cons'
+let g:spaceline_seperate_style= 'slant-cons'
 let g:spaceline_colorscheme = 'one'
 
 "========
