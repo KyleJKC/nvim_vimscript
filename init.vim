@@ -12,7 +12,7 @@
 "============
 "首次安装使用
 "============
-"Vim-Plug的下载安装
+"Vim-Plug的首次下载安装
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
