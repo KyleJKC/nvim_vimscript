@@ -1,4 +1,4 @@
-" please read through this file and change what you need to change
+"一些可能要改的设置
 
 let g:python_host_prog='/usr/bin/python2.7'
 let g:python3_host_prog='/usr/bin/python3.8'

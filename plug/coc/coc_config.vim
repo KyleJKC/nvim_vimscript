@@ -1,3 +1,5 @@
+"COC配置文件
+
 let g:coc_status_error_sign = '•'
 let g:coc_status_warning_sign = '•'
 
