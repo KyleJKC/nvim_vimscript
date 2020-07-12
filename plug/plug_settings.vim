@@ -63,6 +63,7 @@ let g:EasyMotion_do_shade = 0
 let g:EasyMotion_smartcase = 1
 map ' <Plug>(easymotion-overwin-f2)
 nmap ' <Plug>(easymotion-overwin-f2)
+vmap ' <Plug>(easymotion-overwin-f2)
 
 "Vista设置
 noremap <LEADER>v :Vista<CR>
