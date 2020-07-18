@@ -361,5 +361,4 @@ let g:dashboard_custom_shortcut={
       \ }
 
 "spaceline设置
-let g:spaceline_seperate_style= 'slant-cons'
 let g:spaceline_colorscheme = 'one'
