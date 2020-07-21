@@ -13,6 +13,7 @@ Plug 'hardcoreplayers/dashboard-nvim'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'hardcoreplayers/oceanic-material'
 "功能插件
+Plug 'zxqfl/tabnine-vim'
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 Plug 'rhysd/accelerated-jk'
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
