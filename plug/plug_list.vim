@@ -11,7 +11,6 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'hardcoreplayers/dashboard-nvim'
 "主题插件
 Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'liuchengxu/space-vim-theme'
 Plug 'hardcoreplayers/oceanic-material'
 "功能插件
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
