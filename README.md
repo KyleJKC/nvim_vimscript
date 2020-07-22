@@ -28,7 +28,7 @@
 
 # 特性
 ### 超级快！
-  * 0.6ms
+  * 6ms启动速度
   * 将近40个插件
 ### 好上手！
   * W,S,A,D移动
@@ -71,7 +71,7 @@
 ### 已经配置支持的语言：
   * C / C++ / Objective-C
   * Go
-  * Pyhton
+  * Python
 
 ##### 想要配置别的语言十分简单，参考[COC官方WIKI](https://github.com/neoclide/coc.nvim/wiki/Language-servers)
 
@@ -126,19 +126,6 @@
   | SPC f f  | `<C-p>` | 查找文件     |
   | SPC f a  | `<C-f>` | 查找文字     |
   | SPC t c  | `NONE`  | 实时更换主题 |
-
-  ---
-
-# 配置文件目录
-### **为了方便管理配置文件，我将配置文件稍微模块化**
-
-  * 假设你在.config/nvim目录下：
-
-#### 主要配置文件：`init.vim`
-#### COC的配置文件：`plug_configs/_coc_config.vim`
-#### 语言运行设置：`language_config.vim`
-#### 你可能需要特别修改的配置（例如python路径）：`_special_config.vim`
-
 
   ---
 
