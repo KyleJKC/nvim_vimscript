@@ -7,11 +7,29 @@
     "\"",
     "`"
   ],
+  "diagnostic.signOffset": 1,
+	"diagnostic.errorSign": "×",
+	"diagnostic.warningSign": "»",
+	"diagnostic.infoSign": "ღ",
+	"diagnostic.hintSign": "ஐ",
+	"diagnostic.displayByAle": false,
+	"diagnostic.refreshOnInsertMode": false,
+	"diagnostic.refreshAfterSave": false,
+	"diagnostic.checkCurrentLine": true,
+	"diagnostic.virtualTextPrefix": " ❯❯❯ ",
+	"diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
   "languageserver": {
     "clangd": {
       "command": "clangd",
       "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
       "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
+    },
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "disableWorkspaceFolders": true,
+      "filetypes": ["go"]
     }
   },
   "cSpell.userWords": [
