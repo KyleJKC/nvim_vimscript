@@ -12,6 +12,7 @@ Plug 'hardcoreplayers/dashboard-nvim'
 "主题插件
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'hardcoreplayers/oceanic-material'
+Plug 'liuchengxu/space-vim-theme'
 "功能插件
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 Plug 'rhysd/accelerated-jk'
@@ -36,7 +37,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.vim/bundle/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'neoclide/coc.nvim',{'branch':'release'}
-Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'jiangmiao/auto-pairs'
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()

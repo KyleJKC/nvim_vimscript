@@ -318,13 +318,6 @@ let g:NERDCommentEmptyLines      = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines    = 1
 
-"vim-cpp-enhanced-highlight设置
-let g:cpp_class_scope_highlight = 1
-let g:cpp_class_decl_highlight = 1
-let g:cpp_experimental_simple_template_highlight = 1
-let g:cpp_experimental_template_highlight = 1
-let g:cpp_concepts_highlight = 1
-
 "============
 "美化插件设置
 "============
