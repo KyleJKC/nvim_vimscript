@@ -7,6 +7,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 "美化插件
 Plug 'hardcoreplayers/spaceline.vim'
+Plug 'hardcoreplayers/vim-buffet'
 Plug 'ryanoasis/vim-devicons'
 Plug 'hardcoreplayers/dashboard-nvim'
 "主题插件
@@ -15,6 +16,7 @@ Plug 'hardcoreplayers/oceanic-material'
 Plug 'liuchengxu/space-vim-theme'
 "功能插件
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+Plug 'tyru/caw.vim'
 Plug 'tenfyzhong/CompleteParameter.vim'
 Plug 'metalelf0/supertab'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
@@ -31,8 +33,8 @@ Plug 'kristijanhusak/defx-git', {'on':'Defx'}
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'kristijanhusak/defx-icons'
 Plug 'junegunn/vim-peekaboo'
-Plug 'mbbill/undotree'
 Plug 'voldikss/vim-floaterm', { 'on': 'FloatermNew' }
+Plug 'simnalamburt/vim-mundo'
 Plug 'Chiel92/vim-autoformat', {'on':'Autoformat'}
 Plug 'honza/vim-snippets'
 Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }

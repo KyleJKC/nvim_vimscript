@@ -10,7 +10,6 @@ let g:coc_global_extensions = [
       \ 'coc-json',
       \ 'coc-python',
       \ 'coc-snippets',
-      \ 'coc-syntax',
       \ 'coc-yaml',
       \ 'coc-git',
       \ 'coc-vimlsp',
@@ -26,7 +25,7 @@ set nowritebackup
 set cmdheight=2
 set updatetime=300
 set shortmess+=c
-set signcolumn=no
+" set signcolumn=no
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :

@@ -29,7 +29,11 @@ set foldmethod=indent
 set foldlevel=99
 set foldenable
 set autochdir
+set undofile
+set undodir=~/.config/nvim/undo
 set ttyfast
+set list
+set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
 let mapleader=" "
 vnoremap <C-c> "+y
 exec "nohlsearch"

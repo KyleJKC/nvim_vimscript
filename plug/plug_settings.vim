@@ -146,6 +146,8 @@ noremap <c-d> :BD<CR>
 let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.6 } }
 
 "Vim-clap模糊搜索设置
+let s:zshrc = expand($HOME . '/.zshrc')
+let s:tmux_conf = expand($HOME . '/.tmux.conf')
 let g:clap_cache_directory = $DATA_PATH . '/clap'
 let g:clap_theme = 'material_design_dark'
 let g:clap_current_selection_sign= { 'text': '➤', 'texthl': "ClapCurrentSelectionSign", "linehl": "ClapCurrentSelection"}
@@ -154,6 +156,10 @@ let g:clap_enable_icon = 1
 let g:clap_search_box_border_style = 'curve'
 let g:clap_provider_grep_enable_icon = 1
 let g:clap_prompt_format = '%spinner%%forerunner_status% %provider_id%: '
+let g:clap_provider_personalconf = {
+      \ 'source': [s:zshrc,s:tmux_conf],
+      \ 'sink': 'e',
+      \ }
 
 function! s:ClapSymbolHL() abort
   let s:current_bgcolor = synIDattr(hlID("Normal"), "bg")
@@ -365,3 +371,16 @@ let g:dashboard_custom_shortcut={
 
 "spaceline设置
 let g:spaceline_colorscheme = 'one'
+let g:spaceline_seperate_style= 'slant-cons'
+
+"Vim-buffet设置
+nmap <leader>1 <Plug>BuffetSwitch(1)
+nmap <leader>2 <Plug>BuffetSwitch(2)
+nmap <leader>3 <Plug>BuffetSwitch(3)
+nmap <leader>4 <Plug>BuffetSwitch(4)
+nmap <leader>5 <Plug>BuffetSwitch(5)
+nmap <leader>6 <Plug>BuffetSwitch(6)
+nmap <leader>7 <Plug>BuffetSwitch(7)
+nmap <leader>8 <Plug>BuffetSwitch(8)
+nmap <leader>9 <Plug>BuffetSwitch(9)
+nmap <leader>0 <Plug>BuffetSwitch(10)
