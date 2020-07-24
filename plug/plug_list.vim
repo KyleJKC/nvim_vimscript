@@ -15,8 +15,11 @@ Plug 'hardcoreplayers/oceanic-material'
 Plug 'liuchengxu/space-vim-theme'
 "功能插件
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+Plug 'tenfyzhong/CompleteParameter.vim'
 Plug 'metalelf0/supertab'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'denstiny/Terslation'
+Plug 'SpringHan/Terslation.vim'
 Plug 'rhysd/accelerated-jk'
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
 Plug 'junegunn/limelight.vim', {'on': 'Goyo'}

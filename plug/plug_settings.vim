@@ -53,6 +53,13 @@ augroup user_plugin_goyo
   autocmd  User GoyoLeave nested call <SID>goyo_leave()
 augroup END
 
+" CompleteParameter设置
+inoremap <silent><expr> ( complete_parameter#pre_complete("()")
+smap <c-j> <Plug>(complete_parameter#goto_next_parameter)
+imap <c-j> <Plug>(complete_parameter#goto_next_parameter)
+smap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
+imap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
+
 "Accelerated-ws设置
 nmap s <Plug>(accelerated_jk_gj)
 nmap w <Plug>(accelerated_jk_gk)
@@ -81,6 +88,9 @@ let g:vista#renderer#icons = {
 " endfunction
 " set statusline+=%{NearestMethodOrFunction()}
 " autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+
+"Terslation设置
+nnoremap <LEADER>tl :TerslationToggle<CR>
 
 "Vim-table-mode设置
 map <LEADER>tm :TableModeToggle<CR>

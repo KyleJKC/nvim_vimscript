@@ -24,7 +24,7 @@ noremap c d
 noremap j c
 noremap m r
 noremap ; :
-inoremap jj <esc>
+inoremap jk <esc>
 
 noremap = nzz
 noremap - Nzz
