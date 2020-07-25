@@ -77,11 +77,11 @@ vmap ' <Plug>(easymotion-overwin-f2)
 "Vista设置
 noremap <LEADER>v :Vista<CR>
 let g:vista#renderer#enable_icon = 1
-    let g:vista_disable_statusline = 1
-    let g:vista_default_executive = 'ctags'
-    let g:vista_echo_cursor_strategy = 'floating_win'
-    let g:vista_vimwiki_executive = 'markdown'
-    let g:vista_executive_for = {
+let g:vista_disable_statusline = 1
+let g:vista_default_executive = 'ctags'
+let g:vista_echo_cursor_strategy = 'floating_win'
+let g:vista_vimwiki_executive = 'markdown'
+let g:vista_executive_for = {
       \ 'vimwiki': 'markdown',
       \ 'pandoc': 'markdown',
       \ 'markdown': 'toc',
@@ -90,8 +90,12 @@ let g:vista#renderer#enable_icon = 1
       \ 'typescriptreact': 'coc',
       \ }
 
-"Terslation设置
-nnoremap <LEADER>tl :TerslationToggle<CR>
+"Translator设置
+nmap <silent> <Leader>ts <Plug>TranslateW
+vmap <silent> <Leader>ts <Plug>TranslateWV
+let g:translator_window_max_width=0.3
+let g:translator_window_max_height=0.3
+let g:translator_default_engines=['youdao' , 'google']
 
 "Vim-table-mode设置
 map <LEADER>tm :TableModeToggle<CR>

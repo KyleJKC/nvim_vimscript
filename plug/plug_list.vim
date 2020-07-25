@@ -9,7 +9,9 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'hardcoreplayers/spaceline.vim'
 Plug 'hardcoreplayers/vim-buffet'
 Plug 'ryanoasis/vim-devicons'
+Plug 'Yggdroot/indentLine'
 Plug 'hardcoreplayers/dashboard-nvim'
+" Plug 'Yggdroot/indentLine',{ 'on': 'BufReadPre' }
 "主题插件
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'hardcoreplayers/oceanic-material'
@@ -20,11 +22,8 @@ Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 Plug 'tyru/caw.vim'
 Plug 'tenfyzhong/CompleteParameter.vim'
 Plug 'metalelf0/supertab'
-" Plug 'Yggdroot/indentLine',{ 'on': 'BufReadPre' }
-Plug 'Yggdroot/indentLine'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'denstiny/Terslation'
-Plug 'SpringHan/Terslation.vim'
+Plug 'voldikss/vim-translator'
 Plug 'rhysd/accelerated-jk'
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
 Plug 'junegunn/limelight.vim', {'on': 'Goyo'}

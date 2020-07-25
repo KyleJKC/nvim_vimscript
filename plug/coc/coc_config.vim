@@ -21,7 +21,6 @@ let g:coc_global_extensions = [
   \ 'coc-gitignore',
   \ 'coc-actions',
   \ 'coc-db',
-  \ 'coc-translator',
   \ 'coc-yank']
   vmap <A-m> <Plug>(coc-codeaction-selected)<CR>
   nmap <A-m> <Plug>(coc-codeaction-selected)<CR>
