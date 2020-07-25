@@ -76,20 +76,19 @@ vmap ' <Plug>(easymotion-overwin-f2)
 
 "Vista设置
 noremap <LEADER>v :Vista<CR>
-noremap <c-t> :silent! Vista finder coc<CR>
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-let g:vista_default_executive = 'ctags'
-let g:vista_fzf_preview = ['right:50%']
 let g:vista#renderer#enable_icon = 1
-let g:vista#renderer#icons = {
-      \   "function": "\uf794",
-      \   "variable": "\uf71b",
-      \  }
-" function! NearestMethodOrFunction() abort
-"   return get(b:, 'vista_nearest_method_or_function', '')
-" endfunction
-" set statusline+=%{NearestMethodOrFunction()}
-" autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+    let g:vista_disable_statusline = 1
+    let g:vista_default_executive = 'ctags'
+    let g:vista_echo_cursor_strategy = 'floating_win'
+    let g:vista_vimwiki_executive = 'markdown'
+    let g:vista_executive_for = {
+      \ 'vimwiki': 'markdown',
+      \ 'pandoc': 'markdown',
+      \ 'markdown': 'toc',
+      \ 'yaml': 'coc',
+      \ 'typescript': 'coc',
+      \ 'typescriptreact': 'coc',
+      \ }
 
 "Terslation设置
 nnoremap <LEADER>tl :TerslationToggle<CR>
