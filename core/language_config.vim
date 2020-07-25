@@ -19,9 +19,9 @@ func! CompileRunGcc()
     :sp
     :term python3 %
   elseif &filetype == 'html'
-    silent! exec "!".g:mkdp_browser." % &"
+    silent! exec "!" google-chrome-stable " % &"
   elseif &filetype == 'markdown'
-    exec "MarkdownPreview"
+    exec "InstantMarkdownPreview"
   elseif &filetype == 'tex'
     silent! exec "VimtexStop"
     silent! exec "VimtexCompile"

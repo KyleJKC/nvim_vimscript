@@ -40,7 +40,7 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'Chiel92/vim-autoformat', {'on':'Autoformat'}
 Plug 'honza/vim-snippets'
 Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
-Plug 'iamcco/markdown-preview.nvim', {'do':'cd app & npm install', 'for': 'markdown'  }
+Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'junegunn/fzf', { 'dir': '~/.vim/bundle/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
