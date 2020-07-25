@@ -1,4 +1,17 @@
 {
+  "languageserver": {
+    "clangd": {
+      "command": "clangd",
+      "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
+      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
+    },
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "disableWorkspaceFolders": true,
+      "filetypes": ["go"]
+    }
+  },
   "suggest.triggerAfterInsertEnter": false,
   "suggest.timeout": 500,
   "suggest.noselect": false,
@@ -33,97 +46,121 @@
     "typeParameter": "\uf728",
     "default": "\uf29c"
   },
-  "pairs.enableCharacters": [
-    "(",
-      "[",
-        "{",
-          "'",
-          "\"",
-          "`"
-      ],
-      "diagnostic.signOffset": 9999999,
-      "diagnostic.errorSign": "●",
-      "diagnostic.warningSign": "●",
-      "diagnostic.infoSign": "●",
-      "diagnostic.hintSign": "●",
-      "diagnostic.displayByAle": false,
-      "diagnostic.refreshOnInsertMode": false,
-      "diagnostic.refreshAfterSave": false,
-      "diagnostic.checkCurrentLine": true,
-      "diagnostic.virtualTextPrefix": " ❯❯❯ ",
-      "diagnostic.virtualText": true,
-      "diagnostic.refreshOnInsertMode": true,
-      "git.enableGutters": true,
-      "git.branchCharacter": "\uf418",
-      "git.addGBlameToBufferVar": true,
-      "git.addGBlameToVirtualText": true,
-      "git.virtualTextPrefix": " ❯❯❯ ",
-      "git.addedSign.hlGroup": "GitGutterAdd",
-      "git.changedSign.hlGroup": "GitGutterChange",
-      "git.removedSign.hlGroup": "GitGutterDelete",
-      "git.topRemovedSign.hlGroup": "GitGutterDelete",
-      "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
-      "git.addedSign.text": "▋",
-      "git.changedSign.text": "▋",
-      "git.removedSign.text": "▋",
-      "git.topRemovedSign.text": "▔",
-      "git.changeRemovedSign.text": "▋",
-      "coc.preferences.snippetStatusText": "Ⓢ ",
-      "languageserver": {
-        "clangd": {
-          "command": "clangd",
-          "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
-          "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
-        },
-        "golang": {
-          "command": "gopls",
-          "rootPatterns": ["go.mod"],
-          "disableWorkspaceFolders": true,
-          "filetypes": ["go"]
-        }
-      },
-      "cSpell.userWords": [
-        "Bilibili",
-        "Floaterm",
-        "kristijanhusak",
-        "liuchengxu",
-        "mkdp",
-        "sonph"
-      ],
-      "cSpell.fixSpellingWithRenameProvider": true,
-      "cSpell.showStatus": false,
-      "cSpell.enabledLanguageIds": [
-        "asciidoc",
-        "c",
-        "cpp",
-        "csharp",
-        "css",
-        "git-commit",
-        "gitcommit",
-        "go",
-        "haskell",
-        "html",
-        "java",
-        "javascript",
-        "javascriptreact",
-        "json",
-        "jsonc",
-        "latex",
-        "less",
-        "markdown",
-        "php",
-        "plaintext",
-        "python",
-        "pug",
-        "restructuredtext",
-        "rust",
-        "scala",
-        "scss",
-        "text",
-        "typescript",
-        "typescriptreact",
-        "yaml",
-        "yml",
-        "vim"
-      ]
-        }
+  //diagnostic
+  "diagnostic.signOffset": 9999999,
+  "diagnostic.errorSign": "●",
+  "diagnostic.warningSign": "●",
+  "diagnostic.infoSign": "●",
+  "diagnostic.displayByAle": false,
+  "diagnostic.refreshOnInsertMode": true,
+  //git
+  "git.enableGutters": true,
+  "git.branchCharacter": "\uf418",
+  "git.addGBlameToBufferVar": true,
+  "git.addGBlameToVirtualText": true,
+  "git.virtualTextPrefix": " ❯❯❯ ",
+  "git.addedSign.hlGroup": "GitGutterAdd",
+  "git.changedSign.hlGroup": "GitGutterChange",
+  "git.removedSign.hlGroup": "GitGutterDelete",
+  "git.topRemovedSign.hlGroup": "GitGutterDelete",
+  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+  "git.addedSign.text": "▋",
+  "git.changedSign.text": "▋",
+  "git.removedSign.text": "▋",
+  "git.topRemovedSign.text": "▔",
+  "git.changeRemovedSign.text": "▋",
+  //Snippet
+  "coc.preferences.snippetStatusText": "Ⓢ ",
+  //CocList
+  "list.source.files.defaultOptions": ["--auto-preview"],
+  "list.source.outline.defaultOptions": ["--auto-preview"],
+  //prettier
+  "coc.preferences.formatOnSaveFiletypes": [
+    "html",
+    "css",
+    "markdown",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "go",
+    "json"
+  ],
+  "prettier.statusItemText": "ⓟ ",
+  "prettier.eslintIntegration": true,
+  "prettier.tslintIntegration": false,
+  "prettier.stylelintIntegration": true,
+  "prettier.disableSuccessMessage": true,
+  //emmet
+  "emmet.includeLanguages": {
+    "vue-html": "html",
+    "javascript": "javascriptreact",
+    "typescriptreact": "typescriptreact"
+  },
+  //imselect
+  "imselect.enableStatusItem": false,
+  //multiple curssor
+  "cursors.nextKey": "<C-n>",
+  "cursors.previousKey": "<C-p>",
+  "cursors.cancelKey": "<esc>",
+  //sessions
+  "session.directory": "~/.cache/vim/session",
+  // coc-explorer
+  "explorer.icon.expanded": "▾",
+  "explorer.icon.collapsed": "▸",
+  "explorer.width": 30,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.quitOnOpen": true,
+  "explorer.floating.width": -20,
+  "explorer.floating.height": -10,
+  "explorer.openAction.strategy": "sourceWindow",
+  // eslint
+  "eslint.filetypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "eslint.autoFix": true,
+  "eslint.autoFixOnSave": true,
+  // coc-actions
+  "coc-actions.hideCursor": false,
+  // Cspell
+  "cSpell.fixSpellingWithRenameProvider": true,
+  "cSpell.showStatus": false,
+  "cSpell.enabledLanguageIds": [
+    "asciidoc",
+    "c",
+    "cpp",
+    "csharp",
+    "css",
+    "git-commit",
+    "gitcommit",
+    "go",
+    "haskell",
+    "html",
+    "java",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "jsonc",
+    "latex",
+    "less",
+    "markdown",
+    "php",
+    "plaintext",
+    "python",
+    "pug",
+    "restructuredtext",
+    "rust",
+    "scala",
+    "scss",
+    "text",
+    "typescript",
+    "typescriptreact",
+    "yaml",
+    "yml",
+    "vim"
+  ],
+  "cSpell.userWords": ["Floaterm"]
+}

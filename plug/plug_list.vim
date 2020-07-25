@@ -13,12 +13,15 @@ Plug 'hardcoreplayers/dashboard-nvim'
 "主题插件
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'hardcoreplayers/oceanic-material'
+Plug 'mhartington/oceanic-next'
 Plug 'liuchengxu/space-vim-theme'
 "功能插件
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 Plug 'tyru/caw.vim'
 Plug 'tenfyzhong/CompleteParameter.vim'
 Plug 'metalelf0/supertab'
+" Plug 'Yggdroot/indentLine',{ 'on': 'BufReadPre' }
+Plug 'Yggdroot/indentLine'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'denstiny/Terslation'
 Plug 'SpringHan/Terslation.vim'

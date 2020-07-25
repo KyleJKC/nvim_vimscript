@@ -5,6 +5,8 @@
 source ~/.config/nvim/plug/coc/coc_config.vim
 
 "floaterm设置
+hi Floaterm guibg=black
+hi FloatermBorder guibg=none guifg=cyan
 let g:floaterm_position = 'center'
 let g:floaterm_wintype = 'floating'
 noremap <LEADER>ftn :FloatermNew<CR>
@@ -179,6 +181,13 @@ nnoremap <silent> <Leader>fa :<C-u>Clap grep2<CR>
 nnoremap <silent> <Leader>fb :<C-u>Clap marks<CR>
 nnoremap <silent> <Leader>fd :<C-u>Clap filer<CR>
 
+"Indentline设置
+let g:indentLine_enabled = 1
+let g:indentLine_char='┆'
+let g:indentLine_fileTypeExclude = ['defx', 'denite','startify','tagbar','vista_kind','vista','coc-explorer','dashboard']
+let g:indentLine_concealcursor = 'niv'
+let g:indentLine_showFirstIndentLevel =1
+
 "MarkdownPreview设置
 let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 1
@@ -234,7 +243,9 @@ call defx#custom#option('_', {
       \ 'show_ignored_files': 0,
       \ 'columns': 'indent:git:icons:filename',
       \ 'root_marker': ' ',
-      \ 'toggle': 1
+      \ 'floating_preview': 1,
+      \ 'vertical_preview': 1,
+      \ 'preview_height': 50,
       \ })
 
 call defx#custom#column('git', {
@@ -252,9 +263,32 @@ call defx#custom#column('git', {
 
 call defx#custom#column('mark', { 'readonly_icon': '', 'selected_icon': '' })
 
-autocmd FileType defx call s:defx_mappings()
+augroup user_plugin_defx
+  autocmd!
+  autocmd FileType defx call <SID>defx_mappings()
+  autocmd WinEnter * if &filetype == 'defx' && winnr('$') == 1 | bdel | endif
+  autocmd TabLeave * if &filetype == 'defx' | wincmd w | endif
+augroup END
+
+function! s:jump_dirty(dir) abort
+  let l:icons = get(g:, 'defx_git_indicators', {})
+  let l:icons_pattern = join(values(l:icons), '\|')
+
+  if ! empty(l:icons_pattern)
+    let l:direction = a:dir > 0 ? 'w' : 'bw'
+    return search(printf('\(%s\)', l:icons_pattern), l:direction)
+  endif
+endfunction
+
+function! s:defx_toggle_tree() abort
+  if defx#is_directory()
+    return defx#do_action('open_or_close_tree')
+  endif
+  return defx#do_action('multi', ['drop'])
+endfunction
 
 function! s:defx_mappings() abort
+  setlocal signcolumn=no expandtab
   nnoremap <silent><buffer><expr> <CR>     <SID>defx_toggle_tree()                    " 打开或者关闭文件夹，文件
   nnoremap <silent><buffer><expr> <C-h>     defx#do_action('toggle_ignored_files')     " 显示隐藏文件
   nnoremap <silent><buffer><expr> c defx#do_action('copy')
@@ -282,6 +316,10 @@ function! s:defx_mappings() abort
   nnoremap <silent><buffer><expr> k line('.') == 1 ? 'G' : 'k'
   nnoremap <silent><buffer><expr> <C-g> defx#do_action('print')
   nnoremap <silent><buffer><expr> cd defx#do_action('change_vim_cwd')
+  nnoremap <silent><buffer><expr> u   defx#do_action('cd', ['..'])
+  nnoremap <silent><buffer><expr> 2u  defx#do_action('cd', ['../..'])
+  nnoremap <silent><buffer><expr> 3u  defx#do_action('cd', ['../../..'])
+  nnoremap <silent><buffer><expr> 4u  defx#do_action('cd', ['../../../..'])
 
 endfunction
 
@@ -299,6 +337,8 @@ function! s:defx_toggle_tree() abort
   return defx#do_action('multi', ['drop'])
 endfunction
 
+let g:defx_icons_column_length = 1
+let g:defx_icons_mark_icon = ''
 " Rainbow_Parenthess设置
 let g:rbpt_colorpairs = [
       \ ['brown',       'RoyalBlue3'],
