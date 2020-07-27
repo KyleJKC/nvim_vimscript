@@ -12,6 +12,13 @@ let g:floaterm_wintype = 'floating'
 noremap <LEADER>ftn :FloatermNew<CR>
 noremap <LEADER>ftk :FloatermKill<CR>
 
+"OpenBrowser设置
+let g:netrw_nogx = 1
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
+nmap gu <Plug>(openbrowser-open)
+vmap gu <Plug>(openbrowser-open)
+
 "Goyo设置
 noremap <LEADER>gy :Goyo<CR>
 autocmd! User GoyoEnter Limelight
@@ -26,33 +33,33 @@ let g:limelight_bop = '^\s'
 let g:limelight_eop = '\ze\n^\s'
 let g:limelight_priority = -1
 function! s:goyo_enter()
-  if has('gui_running')
-    set fullscreen
-    set background=light
-    set linespace=7
-  elseif exists('$TMUX')
-    silent !tmux set status off
-  endif
-  let g:loaded_spaceline=0
-  Limelight
+	if has('gui_running')
+		set fullscreen
+		set background=light
+		set linespace=7
+	elseif exists('$TMUX')
+		silent !tmux set status off
+	endif
+	let g:loaded_spaceline=0
+	Limelight
 endfunction
 function! s:goyo_leave()
-  if has('gui_running')
-    set nofullscreen
-    set background=dark
-    set linespace=0
-  elseif exists('$TMUX')
-    silent !tmux set status on
-  endif
-  let g:loaded_spaceline =1
-  Limelight!
+	if has('gui_running')
+		set nofullscreen
+		set background=dark
+		set linespace=0
+	elseif exists('$TMUX')
+		silent !tmux set status on
+	endif
+	let g:loaded_spaceline =1
+	Limelight!
 endfunction
 augroup user_plugin_goyo
-  autocmd!
-  autocmd! User GoyoEnter
-  autocmd! User GoyoLeave
-  autocmd  User GoyoEnter nested call <SID>goyo_enter()
-  autocmd  User GoyoLeave nested call <SID>goyo_leave()
+	autocmd!
+	autocmd! User GoyoEnter
+	autocmd! User GoyoLeave
+	autocmd  User GoyoEnter nested call <SID>goyo_enter()
+	autocmd  User GoyoLeave nested call <SID>goyo_leave()
 augroup END
 
 " CompleteParameter设置
@@ -82,13 +89,13 @@ let g:vista_default_executive = 'ctags'
 let g:vista_echo_cursor_strategy = 'floating_win'
 let g:vista_vimwiki_executive = 'markdown'
 let g:vista_executive_for = {
-      \ 'vimwiki': 'markdown',
-      \ 'pandoc': 'markdown',
-      \ 'markdown': 'toc',
-      \ 'yaml': 'coc',
-      \ 'typescript': 'coc',
-      \ 'typescriptreact': 'coc',
-      \ }
+			\ 'vimwiki': 'markdown',
+			\ 'pandoc': 'markdown',
+			\ 'markdown': 'toc',
+			\ 'yaml': 'coc',
+			\ 'typescript': 'coc',
+			\ 'typescriptreact': 'coc',
+			\ }
 
 "Translator设置
 nmap <silent> <Leader>ts <Plug>TranslateW
@@ -113,8 +120,8 @@ au BufWrite *.js :Autoformat
 "UndoTree设置
 nnoremap <F5> :UndotreeToggle<CR>
 if has("persistent_undo")
-  set undodir=$HOME/.undodir
-  set undofile
+	set undodir=$HOME/.undodir
+	set undofile
 endif
 
 "FZF模糊搜索设置
@@ -130,21 +137,21 @@ let g:fzf_preview_window = 'right:60%'
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 
 function! s:list_buffers()
-  redir => list
-  silent ls
-  redir END
-  return split(list, "\n")
+	redir => list
+	silent ls
+	redir END
+	return split(list, "\n")
 endfunction
 
 function! s:delete_buffers(lines)
-  execute 'bwipeout' join(map(a:lines, {_, line -> split(line)[0]}))
+	execute 'bwipeout' join(map(a:lines, {_, line -> split(line)[0]}))
 endfunction
 
 command! BD call fzf#run(fzf#wrap({
-      \ 'source': s:list_buffers(),
-      \ 'sink*': { lines -> s:delete_buffers(lines) },
-      \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
-      \ }))
+			\ 'source': s:list_buffers(),
+			\ 'sink*': { lines -> s:delete_buffers(lines) },
+			\ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
+			\ }))
 
 noremap <c-d> :BD<CR>
 
@@ -162,15 +169,15 @@ let g:clap_search_box_border_style = 'curve'
 let g:clap_provider_grep_enable_icon = 1
 let g:clap_prompt_format = '%spinner%%forerunner_status% %provider_id%: '
 let g:clap_provider_personalconf = {
-      \ 'source': [s:zshrc,s:tmux_conf],
-      \ 'sink': 'e',
-      \ }
+			\ 'source': [s:zshrc,s:tmux_conf],
+			\ 'sink': 'e',
+			\ }
 
 function! s:ClapSymbolHL() abort
-  let s:current_bgcolor = synIDattr(hlID("Normal"), "bg")
-  if s:current_bgcolor == ''
-    hi ClapSymbol guibg=NONE ctermbg=NONE
-  endif
+	let s:current_bgcolor = synIDattr(hlID("Normal"), "bg")
+	if s:current_bgcolor == ''
+		hi ClapSymbol guibg=NONE ctermbg=NONE
+	endif
 endfunction
 
 autocmd User ClapOnEnter call s:ClapSymbolHL()
@@ -219,128 +226,128 @@ let g:go_info_mode='gopls'
 "Defx设置
 noremap <LEADER>fe :Defx<CR>
 call defx#custom#option('_', {
-      \ 'resume': 1,
-      \ 'winwidth': 30,
-      \ 'split': 'vertical',
-      \ 'direction': 'topleft',
-      \ 'show_ignored_files': 0,
-      \ 'columns': 'indent:git:icons:filename',
-      \ 'root_marker': ' ',
-      \ 'floating_preview': 1,
-      \ 'vertical_preview': 1,
-      \ 'preview_height': 50,
-      \ })
+			\ 'resume': 1,
+			\ 'winwidth': 30,
+			\ 'split': 'vertical',
+			\ 'direction': 'topleft',
+			\ 'show_ignored_files': 0,
+			\ 'columns': 'indent:git:icons:filename',
+			\ 'root_marker': ' ',
+			\ 'floating_preview': 1,
+			\ 'vertical_preview': 1,
+			\ 'preview_height': 50,
+			\ })
 
 call defx#custom#column('git', {
-      \   'indicators': {
-      \     'Modified'  : '•',
-      \     'Staged'    : '✚',
-      \     'Untracked' : 'ᵁ',
-      \     'Renamed'   : '≫',
-      \     'Unmerged'  : '≠',
-      \     'Ignored'   : 'ⁱ',
-      \     'Deleted'   : '✖',
-      \     'Unknown'   : '⁇'
-      \   }
-      \ })
+			\   'indicators': {
+			\     'Modified'  : '•',
+			\     'Staged'    : '✚',
+			\     'Untracked' : 'ᵁ',
+			\     'Renamed'   : '≫',
+			\     'Unmerged'  : '≠',
+			\     'Ignored'   : 'ⁱ',
+			\     'Deleted'   : '✖',
+			\     'Unknown'   : '⁇'
+			\   }
+			\ })
 
 call defx#custom#column('mark', { 'readonly_icon': '', 'selected_icon': '' })
 
 augroup user_plugin_defx
-  autocmd!
-  autocmd FileType defx call <SID>defx_mappings()
-  autocmd WinEnter * if &filetype == 'defx' && winnr('$') == 1 | bdel | endif
-  autocmd TabLeave * if &filetype == 'defx' | wincmd w | endif
+	autocmd!
+	autocmd FileType defx call <SID>defx_mappings()
+	autocmd WinEnter * if &filetype == 'defx' && winnr('$') == 1 | bdel | endif
+	autocmd TabLeave * if &filetype == 'defx' | wincmd w | endif
 augroup END
 
 function! s:jump_dirty(dir) abort
-  let l:icons = get(g:, 'defx_git_indicators', {})
-  let l:icons_pattern = join(values(l:icons), '\|')
+	let l:icons = get(g:, 'defx_git_indicators', {})
+	let l:icons_pattern = join(values(l:icons), '\|')
 
-  if ! empty(l:icons_pattern)
-    let l:direction = a:dir > 0 ? 'w' : 'bw'
-    return search(printf('\(%s\)', l:icons_pattern), l:direction)
-  endif
+	if ! empty(l:icons_pattern)
+		let l:direction = a:dir > 0 ? 'w' : 'bw'
+		return search(printf('\(%s\)', l:icons_pattern), l:direction)
+	endif
 endfunction
 
 function! s:defx_toggle_tree() abort
-  if defx#is_directory()
-    return defx#do_action('open_or_close_tree')
-  endif
-  return defx#do_action('multi', ['drop'])
+	if defx#is_directory()
+		return defx#do_action('open_or_close_tree')
+	endif
+	return defx#do_action('multi', ['drop'])
 endfunction
 
 function! s:defx_mappings() abort
-  setlocal signcolumn=no expandtab
-  nnoremap <silent><buffer><expr> <CR>     <SID>defx_toggle_tree()                    " 打开或者关闭文件夹，文件
-  nnoremap <silent><buffer><expr> <C-h>     defx#do_action('toggle_ignored_files')     " 显示隐藏文件
-  nnoremap <silent><buffer><expr> c defx#do_action('copy')
-  nnoremap <silent><buffer><expr> m defx#do_action('move')
-  nnoremap <silent><buffer><expr> p defx#do_action('paste')
-  nnoremap <silent><buffer><expr> d defx#do_action('open')
-  nnoremap <silent><buffer><expr> K defx#do_action('new_directory')
-  nnoremap <silent><buffer><expr> N defx#do_action('new_file')
-  nnoremap <silent><buffer><expr> M defx#do_action('new_multiple_files')
-  nnoremap <silent><buffer><expr> C defx#do_action('toggle_columns', 'mark:indent:icon:filename:type:size:time')
-  nnoremap <silent><buffer><expr> S defx#do_action('toggle_sort', 'time')
-  nnoremap <silent><buffer><expr> x defx#do_action('remove')
-  nnoremap <silent><buffer><expr> r defx#do_action('rename')
-  nnoremap <silent><buffer><expr> ! defx#do_action('execute_command')
-  nnoremap <silent><buffer><expr> l defx#do_action('execute_system')
-  nnoremap <silent><buffer><expr> yy defx#do_action('yank_path')
-  nnoremap <silent><buffer><expr> <C-h> defx#do_action('toggle_ignored_files')
-  nnoremap <silent><buffer><expr> ; defx#do_action('repeat')
-  nnoremap <silent><buffer><expr> a defx#do_action('cd', ['..'])
-  nnoremap <silent><buffer><expr> ~ defx#do_action('cd')
-  nnoremap <silent><buffer><expr> q defx#do_action('quit')
-  nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select') . 'j'
-  nnoremap <silent><buffer><expr> * defx#do_action('toggle_select_all')
-  nnoremap <silent><buffer><expr> j line('.') == line('$') ? 'gg' : 'j'
-  nnoremap <silent><buffer><expr> k line('.') == 1 ? 'G' : 'k'
-  nnoremap <silent><buffer><expr> <C-g> defx#do_action('print')
-  nnoremap <silent><buffer><expr> cd defx#do_action('change_vim_cwd')
-  nnoremap <silent><buffer><expr> u   defx#do_action('cd', ['..'])
-  nnoremap <silent><buffer><expr> 2u  defx#do_action('cd', ['../..'])
-  nnoremap <silent><buffer><expr> 3u  defx#do_action('cd', ['../../..'])
-  nnoremap <silent><buffer><expr> 4u  defx#do_action('cd', ['../../../..'])
+	setlocal signcolumn=no expandtab
+	nnoremap <silent><buffer><expr> <CR>     <SID>defx_toggle_tree()                    " 打开或者关闭文件夹，文件
+	nnoremap <silent><buffer><expr> <C-h>     defx#do_action('toggle_ignored_files')     " 显示隐藏文件
+	nnoremap <silent><buffer><expr> c defx#do_action('copy')
+	nnoremap <silent><buffer><expr> m defx#do_action('move')
+	nnoremap <silent><buffer><expr> p defx#do_action('paste')
+	nnoremap <silent><buffer><expr> d defx#do_action('open')
+	nnoremap <silent><buffer><expr> K defx#do_action('new_directory')
+	nnoremap <silent><buffer><expr> N defx#do_action('new_file')
+	nnoremap <silent><buffer><expr> M defx#do_action('new_multiple_files')
+	nnoremap <silent><buffer><expr> C defx#do_action('toggle_columns', 'mark:indent:icon:filename:type:size:time')
+	nnoremap <silent><buffer><expr> S defx#do_action('toggle_sort', 'time')
+	nnoremap <silent><buffer><expr> x defx#do_action('remove')
+	nnoremap <silent><buffer><expr> r defx#do_action('rename')
+	nnoremap <silent><buffer><expr> ! defx#do_action('execute_command')
+	nnoremap <silent><buffer><expr> l defx#do_action('execute_system')
+	nnoremap <silent><buffer><expr> yy defx#do_action('yank_path')
+	nnoremap <silent><buffer><expr> <C-h> defx#do_action('toggle_ignored_files')
+	nnoremap <silent><buffer><expr> ; defx#do_action('repeat')
+	nnoremap <silent><buffer><expr> a defx#do_action('cd', ['..'])
+	nnoremap <silent><buffer><expr> ~ defx#do_action('cd')
+	nnoremap <silent><buffer><expr> q defx#do_action('quit')
+	nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select') . 'j'
+	nnoremap <silent><buffer><expr> * defx#do_action('toggle_select_all')
+	nnoremap <silent><buffer><expr> j line('.') == line('$') ? 'gg' : 'j'
+	nnoremap <silent><buffer><expr> k line('.') == 1 ? 'G' : 'k'
+	nnoremap <silent><buffer><expr> <C-g> defx#do_action('print')
+	nnoremap <silent><buffer><expr> cd defx#do_action('change_vim_cwd')
+	nnoremap <silent><buffer><expr> u   defx#do_action('cd', ['..'])
+	nnoremap <silent><buffer><expr> 2u  defx#do_action('cd', ['../..'])
+	nnoremap <silent><buffer><expr> 3u  defx#do_action('cd', ['../../..'])
+	nnoremap <silent><buffer><expr> 4u  defx#do_action('cd', ['../../../..'])
 
 endfunction
 
 function! s:defx_toggle_tree() abort
-  if defx#is_directory()
-    return defx#do_action('open_or_close_tree')
-  endif
-  return defx#do_action('multi', ['drop'])
+	if defx#is_directory()
+		return defx#do_action('open_or_close_tree')
+	endif
+	return defx#do_action('multi', ['drop'])
 endfunction
 
 function! s:defx_toggle_tree() abort
-  if defx#is_directory()
-    return defx#do_action('open_or_close_tree')
-  endif
-  return defx#do_action('multi', ['drop'])
+	if defx#is_directory()
+		return defx#do_action('open_or_close_tree')
+	endif
+	return defx#do_action('multi', ['drop'])
 endfunction
 
 let g:defx_icons_column_length = 1
 let g:defx_icons_mark_icon = ''
 " Rainbow_Parenthess设置
 let g:rbpt_colorpairs = [
-      \ ['brown',       'RoyalBlue3'],
-      \ ['Darkblue',    'SeaGreen3'],
-      \ ['darkgray',    'DarkOrchid3'],
-      \ ['darkgreen',   'firebrick3'],
-      \ ['darkcyan',    'RoyalBlue3'],
-      \ ['darkred',     'SeaGreen3'],
-      \ ['darkmagenta', 'DarkOrchid3'],
-      \ ['brown',       'firebrick3'],
-      \ ['gray',        'RoyalBlue3'],
-      \ ['black',       'SeaGreen3'],
-      \ ['darkmagenta', 'DarkOrchid3'],
-      \ ['Darkblue',    'firebrick3'],
-      \ ['darkgreen',   'RoyalBlue3'],
-      \ ['darkcyan',    'SeaGreen3'],
-      \ ['darkred',     'DarkOrchid3'],
-      \ ['red',         'firebrick3'],
-      \ ]
+			\ ['brown',       'RoyalBlue3'],
+			\ ['Darkblue',    'SeaGreen3'],
+			\ ['darkgray',    'DarkOrchid3'],
+			\ ['darkgreen',   'firebrick3'],
+			\ ['darkcyan',    'RoyalBlue3'],
+			\ ['darkred',     'SeaGreen3'],
+			\ ['darkmagenta', 'DarkOrchid3'],
+			\ ['brown',       'firebrick3'],
+			\ ['gray',        'RoyalBlue3'],
+			\ ['black',       'SeaGreen3'],
+			\ ['darkmagenta', 'DarkOrchid3'],
+			\ ['Darkblue',    'firebrick3'],
+			\ ['darkgreen',   'RoyalBlue3'],
+			\ ['darkcyan',    'SeaGreen3'],
+			\ ['darkred',     'DarkOrchid3'],
+			\ ['red',         'firebrick3'],
+			\ ]
 let g:rbpt_max = 16
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
@@ -363,17 +370,17 @@ let g:NERDToggleCheckAllLines    = 1
 
 "Dashboard设置
 let g:dashboard_custom_header = [
-      \ '',
-      \ '███████╗██╗   ██╗ ██████╗ ██╗    ██╗   ██╗███████╗    ██╗',
-      \ '██╔════╝██║   ██║██╔═══██╗██║    ██║   ██║██╔════╝    ██║',
-      \ '█████╗  ██║   ██║██║   ██║██║    ██║   ██║█████╗      ██║',
-      \ '██╔══╝  ╚██╗ ██╔╝██║   ██║██║    ╚██╗ ██╔╝██╔══╝      ╚═╝',
-      \ '███████╗ ╚████╔╝ ╚██████╔╝███████╗╚████╔╝ ███████╗    ██╗',
-      \ '╚══════╝  ╚═══╝   ╚═════╝ ╚══════╝ ╚═══╝  ╚══════╝    ╚═╝',
-      \ '',
-      \ '                       [KyleJKC]',
-      \ '',
-      \ ]
+			\ '',
+			\ '███████╗██╗   ██╗ ██████╗ ██╗    ██╗   ██╗███████╗    ██╗',
+			\ '██╔════╝██║   ██║██╔═══██╗██║    ██║   ██║██╔════╝    ██║',
+			\ '█████╗  ██║   ██║██║   ██║██║    ██║   ██║█████╗      ██║',
+			\ '██╔══╝  ╚██╗ ██╔╝██║   ██║██║    ╚██╗ ██╔╝██╔══╝      ╚═╝',
+			\ '███████╗ ╚████╔╝ ╚██████╔╝███████╗╚████╔╝ ███████╗    ██╗',
+			\ '╚══════╝  ╚═══╝   ╚═════╝ ╚══════╝ ╚═══╝  ╚══════╝    ╚═╝',
+			\ '',
+			\ '                       [KyleJKC]',
+			\ '',
+			\ ]
 " let g:dashboard_default_executive ='fzf'
 " let g:dashboard_custom_shortcut={
 "       \ 'last_session'       : 'Ctrl X',
@@ -384,13 +391,13 @@ let g:dashboard_custom_header = [
 "       \ 'book_marks'         : 'Ctrl M',
 "       \ }
 let g:dashboard_custom_shortcut={
-      \ 'last_session' : 'SPC s l',
-      \ 'find_history' : 'SPC f h',
-      \ 'find_file' : 'SPC f f',
-      \ 'change_colorscheme' : 'SPC t c',
-      \ 'find_word' : 'SPC f a',
-      \ 'book_marks' : 'SPC f b',
-      \ }
+			\ 'last_session' : 'SPC s l',
+			\ 'find_history' : 'SPC f h',
+			\ 'find_file' : 'SPC f f',
+			\ 'change_colorscheme' : 'SPC t c',
+			\ 'find_word' : 'SPC f a',
+			\ 'book_marks' : 'SPC f b',
+			\ }
 
 "spaceline设置
 let g:spaceline_colorscheme = 'one'

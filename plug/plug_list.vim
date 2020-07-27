@@ -26,6 +26,7 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'voldikss/vim-translator'
 Plug 'rhysd/accelerated-jk'
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
+Plug 'tyru/open-browser.vim'
 Plug 'junegunn/limelight.vim', {'on': 'Goyo'}
 Plug 'easymotion/vim-easymotion'
 Plug 'kien/rainbow_parentheses.vim'
