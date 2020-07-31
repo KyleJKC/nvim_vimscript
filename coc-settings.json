@@ -15,12 +15,14 @@
   "suggest.triggerAfterInsertEnter": false,
   "suggest.timeout": 500,
   "suggest.noselect": false,
+  "suggest.labelMaxLength": 30,
+  "suggest.detailMaxLength": 30,
   "suggest.detailField": "abbr",
   "suggest.snippetIndicator": "🌟",
   "suggest.triggerCompletionWait": 100,
   "suggest.echodocSupport": true,
-  "suggest.maxPreviewWidth": 80,
-  "suggest.labelMaxLength": 200,
+  //"suggest.maxPreviewWidth": 80,
+  //"suggest.labelMaxLength": 200,
   "suggest.completionItemKindLabels": {
     "keyword": "\uf1de",
     "variable": "\ue79b",
@@ -164,9 +166,5 @@
     "yml",
     "vim"
   ],
-  "cSpell.userWords": [
-    "Bilibili",
-    "Floaterm",
-    "wsdjeg"
-  ]
+  "cSpell.userWords": ["Bilibili", "Floaterm", "wsdjeg"]
 }
