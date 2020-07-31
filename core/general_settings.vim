@@ -3,7 +3,7 @@
 "==========
 let mapleader=" "
 syntax on
-set number
+set nu
 set relativenumber
 set cursorline
 set wrap
@@ -50,19 +50,22 @@ set title
 set titlelen=95
 set pumblend=10
 set winblend=10
+exec "nohlsearch"
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
 let &g:titlestring="
 			\ %{expand('%:p:~:.')}%(%m%r%w%)
 			\ %<\[%{fnamemodify(getcwd(), ':~')}\] - Neovim"
-vnoremap <C-c> "+y
-exec "nohlsearch"
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
 if exists('+previewpopup')
 	set previewpopup=height:10,width:60
 endif
+
 if has('wildmenu')
 	if ! has('nvim')
 		set wildmode=list:longest
 	endif
+
 	set wildignorecase
 	set wildignore+=.git,.hg,.svn,.stversions,*.pyc,*.spl,*.o,*.out,*~,%*
 	set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store

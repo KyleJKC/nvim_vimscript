@@ -58,3 +58,5 @@ noremap lg :FloatermNew lazygit<CR>
 
 map <LEADER>sc :set spell!<CR>
 map <LEADER><LEADER> <ESC>/<++><CR>:nohlsearch<CR>j4d
+
+vnoremap <C-c> "+y
