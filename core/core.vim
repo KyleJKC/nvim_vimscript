@@ -18,7 +18,7 @@ endif
 
 
 "模块化配置
-source ~/.config/nvim/core/general_test.vim
+source ~/.config/nvim/core/general_config.vim
 source ~/.config/nvim/core/key_bindings.vim
 source ~/.config/nvim/core/special_config.vim
 source ~/.config/nvim/core/language_config.vim

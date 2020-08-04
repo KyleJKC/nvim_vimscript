@@ -1,19 +1,20 @@
-set mouse=nv                 
-set report=0                 
-set errorbells               
-set visualbell               
-set hidden                   
-set fileformats=unix,dos,mac 
-set magic                    
-set path+=**                 
-set isfname-==               
-set virtualedit=block        
-set synmaxcol=2500           
-set formatoptions+=1         
-set formatoptions-=t         
-set formatoptions-=o         
+set mouse=nv
+set cursorline
+set report=0
+set errorbells
+set visualbell
+set hidden
+set fileformats=unix,dos,mac
+set magic
+set path+=**
+set isfname-==
+set virtualedit=block
+set synmaxcol=2500
+set formatoptions+=1
+set formatoptions-=t
+set formatoptions-=o
 if has('patch-7.3.541')
-	set formatoptions+=j       
+	set formatoptions+=j
 endif
 
 if has('vim_starting')
@@ -27,17 +28,17 @@ set sessionoptions=curdir,help,tabpages,winsize
 
 if has('mac')
 	let g:clipboard = {
-		\   'name': 'macOS-clipboard',
-		\   'copy': {
-		\      '+': 'pbcopy',
-		\      '*': 'pbcopy',
-		\    },
-		\   'paste': {
-		\      '+': 'pbpaste',
-		\      '*': 'pbpaste',
-		\   },
-		\   'cache_enabled': 0,
-		\ }
+				\   'name': 'macOS-clipboard',
+				\   'copy': {
+				\      '+': 'pbcopy',
+				\      '*': 'pbcopy',
+				\    },
+				\   'paste': {
+				\      '+': 'pbpaste',
+				\      '*': 'pbpaste',
+				\   },
+				\   'cache_enabled': 0,
+				\ }
 endif
 
 if has('clipboard')
@@ -52,11 +53,11 @@ if has('wildmenu')
 	endif
 
 	" if has('nvim')
-	" 	set wildoptions=pum
+	"		set wildoptions=pum
 	" else
-	" 	set nowildmenu
-	" 	set wildmode=list:longest,full
-	" 	set wildoptions=tagfile
+	"		set nowildmenu
+	"		set wildmode=list:longest,full
+	"		set wildoptions=tagfile
 	" endif
 	set wildignorecase
 	set wildignore+=.git,.hg,.svn,.stversions,*.pyc,*.spl,*.o,*.out,*~,%*
@@ -100,8 +101,8 @@ augroup END
 
 " If sudo, disable vim swap/backup/undo/shada/viminfo writing
 if $SUDO_USER !=# '' && $USER !=# $SUDO_USER
-		\ && $HOME !=# expand('~'.$USER)
-		\ && $HOME ==# expand('~'.$SUDO_USER)
+			\ && $HOME !=# expand('~'.$USER)
+			\ && $HOME ==# expand('~'.$SUDO_USER)
 
 	set noswapfile
 	set nobackup
@@ -123,8 +124,8 @@ endif
 augroup user_secure
 	autocmd!
 	silent! autocmd BufNewFile,BufReadPre
-		\ /tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim
-		\ setlocal noswapfile noundofile nobackup nowritebackup viminfo= shada=
+				\ /tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim
+				\ setlocal noswapfile noundofile nobackup nowritebackup viminfo= shada=
 augroup END
 
 " }}}
@@ -230,8 +231,8 @@ set title
 set titlelen=95
 " Title string.
 let &g:titlestring="
-      \ %{expand('%:p:~:.')}%(%m%r%w%)
-      \ %<\[%{fnamemodify(getcwd(), ':~')}\] - Neovim"
+			\ %{expand('%:p:~:.')}%(%m%r%w%)
+			\ %<\[%{fnamemodify(getcwd(), ':~')}\] - Neovim"
 
 set showmatch           " Jump to matching bracket
 set matchpairs+=<:>     " Add HTML brackets to pair matching
