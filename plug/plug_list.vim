@@ -23,6 +23,7 @@ Plug 'tyru/caw.vim'
 Plug 'tenfyzhong/CompleteParameter.vim'
 Plug 'metalelf0/supertab'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'junegunn/vim-easy-align'
 Plug 'voldikss/vim-translator'
 Plug 'rhysd/accelerated-jk'
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}

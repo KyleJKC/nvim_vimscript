@@ -6,6 +6,7 @@
 " < a   d >
 "     s
 "     v
+let mapleader=" "
 noremap w k
 noremap s j
 noremap a h

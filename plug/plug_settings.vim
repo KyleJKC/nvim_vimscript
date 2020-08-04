@@ -225,18 +225,16 @@ let g:go_info_mode='gopls'
 
 "Defx设置
 noremap <LEADER>fe :Defx<CR>
+
 call defx#custom#option('_', {
-			\ 'resume': 1,
-			\ 'winwidth': 30,
-			\ 'split': 'vertical',
-			\ 'direction': 'topleft',
-			\ 'show_ignored_files': 0,
-			\ 'columns': 'indent:git:icons:filename',
-			\ 'root_marker': ' ',
-			\ 'floating_preview': 1,
-			\ 'vertical_preview': 1,
-			\ 'preview_height': 50,
-			\ })
+  \ 'resume': 1,
+  \ 'winwidth': 30,
+  \ 'split': 'vertical',
+  \ 'direction': 'topleft',
+  \ 'show_ignored_files': 0,
+  \ 'columns': 'mark:indent:git:icons:filename',
+  \ 'root_marker': '',
+  \ })
 
 call defx#custom#column('git', {
 			\   'indicators': {
@@ -327,8 +325,9 @@ function! s:defx_toggle_tree() abort
 	return defx#do_action('multi', ['drop'])
 endfunction
 
-let g:defx_icons_column_length = 1
+let g:defx_icons_column_length = 2
 let g:defx_icons_mark_icon = ''
+let g:defx_icons_parent_icon = ""
 " Rainbow_Parenthess设置
 let g:rbpt_colorpairs = [
 			\ ['brown',       'RoyalBlue3'],
@@ -401,7 +400,11 @@ let g:dashboard_custom_shortcut={
 
 "spaceline设置
 " let g:spaceline_colorscheme = 'one'
-" let g:spaceline_seperate_style= 'slant-cons'
+let g:spaceline_seperate_style= 'slant-cons'
+
+"vim-easy-align设置
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 "Vim-buffet设置
 nmap <leader>1 <Plug>BuffetSwitch(1)

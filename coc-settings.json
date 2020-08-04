@@ -21,8 +21,6 @@
   "suggest.snippetIndicator": "🌟",
   "suggest.triggerCompletionWait": 100,
   "suggest.echodocSupport": true,
-  //"suggest.maxPreviewWidth": 80,
-  //"suggest.labelMaxLength": 200,
   "suggest.completionItemKindLabels": {
     "keyword": "\uf1de",
     "variable": "\ue79b",

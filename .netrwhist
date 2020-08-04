@@ -1,6 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =4
-let g:netrw_dirhist_4='/home/kyle/.config/nvim.bak''
-let g:netrw_dirhist_3='/home/kyle/.config'
-let g:netrw_dirhist_2='/home/kyle/.config/nvim/plugged/dashboard-nvim/autoload'
-let g:netrw_dirhist_1='/home/kyle/.config/nvim/plugged/dashboard-nvim/autoload/dashboard'
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/home/kyle/.config/fcitx5/conf'
