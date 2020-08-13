@@ -362,7 +362,6 @@ let g:NERDCustomDelimiters       = {'c': {'left': '/*', 'right': '*/'}}
 let g:NERDCommentEmptyLines      = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines    = 1
-
 "============
 "美化插件设置
 "============
