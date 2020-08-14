@@ -117,13 +117,6 @@ au BufWrite *.js :Autoformat
 " nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 " nnoremap <silent> <localleader> :WhichKey ','<CR>
 
-"UndoTree设置
-nnoremap <F5> :UndotreeToggle<CR>
-if has("persistent_undo")
-	set undodir=$HOME/.undodir
-	set undofile
-endif
-
 "FZF模糊搜索设置
 nmap <C-z> :<C-u>SessionSave<CR>
 nmap <C-x> :<C-u>SessionLoad<CR>
@@ -400,6 +393,7 @@ let g:dashboard_custom_shortcut={
 "spaceline设置
 " let g:spaceline_colorscheme = 'one'
 let g:spaceline_seperate_style= 'slant-cons'
+let g:spaceline_git_branch_icon= ''
 
 "vim-easy-align设置
 xmap ga <Plug>(EasyAlign)
