@@ -8,7 +8,9 @@ func! CompileRunGcc()
     set splitbelow
     exec "!g++ -std=c++11 % -Wall -o %<"
     :sp
+    :res -10
     :term ./%<
+    exec "!rm -rf ./%<"
   elseif &filetype == 'java'
     exec "!javac %"
     exec "!time java %<"

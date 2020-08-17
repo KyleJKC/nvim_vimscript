@@ -150,40 +150,6 @@ noremap <c-d> :BD<CR>
 
 let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.6 } }
 
-"Vim-clap模糊搜索设置
-let s:zshrc = expand($HOME . '/.zshrc')
-let s:tmux_conf = expand($HOME . '/.tmux.conf')
-let g:clap_cache_directory = $DATA_PATH . '/clap'
-let g:clap_theme = 'material_design_dark'
-let g:clap_current_selection_sign= { 'text': '➤', 'texthl': "ClapCurrentSelectionSign", "linehl": "ClapCurrentSelection"}
-let g:clap_layout = { 'relative': 'editor' }
-let g:clap_enable_icon = 1
-let g:clap_search_box_border_style = 'curve'
-let g:clap_provider_grep_enable_icon = 1
-let g:clap_prompt_format = '%spinner%%forerunner_status% %provider_id%: '
-let g:clap_provider_personalconf = {
-			\ 'source': [s:zshrc,s:tmux_conf],
-			\ 'sink': 'e',
-			\ }
-
-function! s:ClapSymbolHL() abort
-	let s:current_bgcolor = synIDattr(hlID("Normal"), "bg")
-	if s:current_bgcolor == ''
-		hi ClapSymbol guibg=NONE ctermbg=NONE
-	endif
-endfunction
-
-autocmd User ClapOnEnter call s:ClapSymbolHL()
-
-nmap <Leader>ss :<C-u>SessionSave<CR>
-nmap <Leader>sl :<C-u>SessionLoad<CR>
-nnoremap <silent> <Leader>fh :<C-u>Clap history<CR>
-nnoremap <silent> <Leader>ff :<C-u>Clap files ++finder=rg --ignore --hidden --files<cr>
-nnoremap <silent> <Leader>tc :<C-u>Clap colors<CR>
-nnoremap <silent> <Leader>fa :<C-u>Clap grep2<CR>
-nnoremap <silent> <Leader>fb :<C-u>Clap marks<CR>
-nnoremap <silent> <Leader>fd :<C-u>Clap filer<CR>
-
 "Indentline设置
 let g:indentLine_enabled = 1
 let g:indentLine_char='┆'
@@ -372,28 +338,19 @@ let g:dashboard_custom_header = [
 			\ '                       [KyleJKC]',
 			\ '',
 			\ ]
-" let g:dashboard_default_executive ='fzf'
-" let g:dashboard_custom_shortcut={
-"       \ 'last_session'       : 'Ctrl X',
-"       \ 'find_history'       : 'Ctrl H',
-"       \ 'find_file'          : 'Ctrl P',
-"       \ 'change_colorscheme' : 'Ctrl T',
-"       \ 'find_word'          : 'Ctrl F',
-"       \ 'book_marks'         : 'Ctrl M',
-"       \ }
+let g:dashboard_default_executive ='fzf'
 let g:dashboard_custom_shortcut={
-			\ 'last_session' : 'SPC s l',
-			\ 'find_history' : 'SPC f h',
-			\ 'find_file' : 'SPC f f',
-			\ 'change_colorscheme' : 'SPC t c',
-			\ 'find_word' : 'SPC f a',
-			\ 'book_marks' : 'SPC f b',
+			\ 'last_session'       : 'Ctrl X',
+			\ 'find_history'       : 'Ctrl H',
+			\ 'find_file'          : 'Ctrl P',
+			\ 'change_colorscheme' : 'Ctrl T',
+			\ 'find_word'          : 'Ctrl F',
+			\ 'book_marks'         : 'Ctrl M',
 			\ }
 
 "spaceline设置
-" let g:spaceline_colorscheme = 'one'
 let g:spaceline_seperate_style= 'slant-cons'
-let g:spaceline_git_branch_icon= ''
+let g:spaceline_git_branch_icon= ' '
 
 "vim-easy-align设置
 xmap ga <Plug>(EasyAlign)
