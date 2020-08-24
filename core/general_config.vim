@@ -4,6 +4,7 @@ set report=0
 set errorbells
 set visualbell
 set hidden
+set autochdir
 set fileformats=unix,dos,mac
 set magic
 set path+=**

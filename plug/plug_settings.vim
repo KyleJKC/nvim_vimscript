@@ -113,18 +113,23 @@ let g:formatdef_custom_js = '"js-beautify -t"'
 let g:formatters_javascript = ['custom_js']
 au BufWrite *.js :Autoformat
 
-" "Vim-Which-Key设置
-" nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
-" nnoremap <silent> <localleader> :WhichKey ','<CR>
-
 "FZF模糊搜索设置
-nmap <C-z> :<C-u>SessionSave<CR>
-nmap <C-x> :<C-u>SessionLoad<CR>
-nnoremap <silent> <C-h> :History<CR>
-nnoremap <silent> <C-p> :Files<CR>
-nnoremap <silent> <C-t> :Colors<CR>
-nnoremap <silent> <C-f> :Rg<CR>
-nnoremap <silent> <C-m> :Marks<CR>
+" nmap <C-z> :<C-u>SessionSave<CR>
+" nmap <C-x> :<C-u>SessionLoad<CR>
+" nnoremap <silent> <C-h> :History<CR>
+" nnoremap <silent> <C-p> :Files<CR>
+" nnoremap <silent> <C-t> :Colors<CR>
+" nnoremap <silent> <C-f> :Rg<CR>
+" nnoremap <silent> <C-m> :Marks<CR>
+
+nmap <Leader>ss :<C-u>SessionSave<CR>
+nmap <Leader>sl :<C-u>SessionLoad<CR>
+nmap <Leader>cn :<C-u>DashboardNewFile<CR>
+nnoremap <silent> <Leader>fh :History<CR>
+nnoremap <silent> <Leader>ff :Files<CR>
+nnoremap <silent> <Leader>tc :Colors<CR>
+nnoremap <silent> <Leader>fa :Rg<CR>
+nnoremap <silent> <Leader>fb :Marks<CR>
 
 let g:fzf_preview_window = 'right:60%'
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
@@ -186,14 +191,14 @@ let g:go_info_mode='gopls'
 noremap <LEADER>fe :Defx<CR>
 
 call defx#custom#option('_', {
-  \ 'resume': 1,
-  \ 'winwidth': 30,
-  \ 'split': 'vertical',
-  \ 'direction': 'topleft',
-  \ 'show_ignored_files': 0,
-  \ 'columns': 'mark:indent:git:icons:filename',
-  \ 'root_marker': '',
-  \ })
+			\ 'resume': 1,
+			\ 'winwidth': 30,
+			\ 'split': 'vertical',
+			\ 'direction': 'topleft',
+			\ 'show_ignored_files': 0,
+			\ 'columns': 'mark:indent:git:icons:filename',
+			\ 'root_marker': '',
+			\ })
 
 call defx#custom#column('git', {
 			\   'indicators': {
@@ -339,14 +344,15 @@ let g:dashboard_custom_header = [
 			\ '',
 			\ ]
 let g:dashboard_default_executive ='fzf'
-let g:dashboard_custom_shortcut={
-			\ 'last_session'       : 'Ctrl X',
-			\ 'find_history'       : 'Ctrl H',
-			\ 'find_file'          : 'Ctrl P',
-			\ 'change_colorscheme' : 'Ctrl T',
-			\ 'find_word'          : 'Ctrl F',
-			\ 'book_marks'         : 'Ctrl M',
-			\ }
+" let g:dashboard_custom_shortcut={
+"       \ 'last_session'       : 'Ctrl X',
+"       \ 'find_history'       : 'Ctrl H',
+"       \ 'find_file'          : 'Ctrl P',
+"       \ 'new_file'           : 'Ctrl E',
+"       \ 'change_colorscheme' : 'Ctrl T',
+"       \ 'find_word'          : 'Ctrl F',
+"       \ 'book_marks'         : 'Ctrl M',
+"       \ }
 
 "spaceline设置
 let g:spaceline_seperate_style= 'slant-cons'
