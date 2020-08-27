@@ -2,13 +2,14 @@
 
 let g:coc_status_error_sign = '•'
 let g:coc_status_warning_sign = '•'
-
 let g:coc_global_extensions = [
       \ 'coc-tabnine',
       \ 'coc-diagnostic',
       \ 'coc-html',
       \ 'coc-json',
       \ 'coc-python',
+      \ 'coc-clangd',
+      \ 'coc-go',
       \ 'coc-snippets',
       \ 'coc-yaml',
       \ 'coc-git',
@@ -29,6 +30,7 @@ augroup coc_event
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 autocmd CursorHold * silent call CocActionAsync('highlight')
+inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :

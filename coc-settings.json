@@ -1,17 +1,5 @@
 {
-  "languageserver": {
-    "clangd": {
-      "command": "clangd",
-      "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
-      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
-    },
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": ["go.mod"],
-      "disableWorkspaceFolders": true,
-      "filetypes": ["go"]
-    }
-  },
+  "coc.preferences.extensionUpdateCheck": "daily",
   "suggest.triggerAfterInsertEnter": false,
   "suggest.timeout": 500,
   "suggest.noselect": false,

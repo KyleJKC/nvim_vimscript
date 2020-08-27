@@ -249,8 +249,6 @@ set helpheight=12       " Minimum help window height
 set previewheight=12    " Completion preview height
 
 set showcmd             " Show command in status line
-set cmdheight=2         " Height of the command line
-set cmdwinheight=5      " Command-line lines
 set noequalalways       " Don't resize windows on split or close
 set laststatus=2        " Always show a status line
 set display=lastline
