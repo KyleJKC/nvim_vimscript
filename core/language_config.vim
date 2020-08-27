@@ -1,3 +1,6 @@
+"语言设置
+
+"这里嘛。。是用来一键编译代码的
 noremap <A-r> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
   exec "w"
@@ -41,6 +44,7 @@ func! CompileRunGcc()
   endif
 endfunc
 
+"每次创建C++文件都会初始化一些内容
 autocmd BufNewFile *.cpp exec ":call CppInit()"
 func CppInit()
   if expand("%:e") == "cpp"
