@@ -32,7 +32,7 @@ Plug 'kristijanhusak/defx-git', {'on':'Defx'}
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins'}
 Plug 'kristijanhusak/defx-icons'
 Plug 'voldikss/vim-floaterm', { 'on': 'FloatermNew' }
-Plug 'Chiel92/vim-autoformat', {'on':'Autoformat'}
+Plug 'sbdchd/neoformat', {'on':'Neoformat'}
 Plug 'honza/vim-snippets',{ 'for': ['c', 'h', 'cpp', 'py', 'json', 'go', 'java', 'vim', 'hs'] }
 Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}

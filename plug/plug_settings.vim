@@ -107,11 +107,8 @@ let g:translator_default_engines=['youdao' , 'google']
 "Vim-table-mode设置
 map <LEADER>tm :TableModeToggle<CR>
 
-"Autoformat设置
-nnoremap <LEADER>fm :Autoformat<CR>
-let g:formatdef_custom_js = '"js-beautify -t"'
-let g:formatters_javascript = ['custom_js']
-au BufWrite *.js :Autoformat
+"Neoformat设置
+nnoremap <LEADER>fm :Neoformat<CR>
 
 "FZF模糊搜索设置
 " nmap <C-z> :<C-u>SessionSave<CR>
