@@ -56,6 +56,7 @@ noremap ta :-tabnext<CR>
 noremap td :+tabnext<CR>
 
 noremap lg :FloatermNew lazygit<CR>
+noremap <LEADER>fr :FloatermNew ranger<CR>
 
 map <LEADER>sc :set spell!<CR>
 map <LEADER><LEADER> <ESC>/<++><CR>:nohlsearch<CR>j4d
