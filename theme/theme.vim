@@ -1,7 +1,7 @@
 "========
 "主题设置
 "========
-color OceanicNext
+color oceanic_material
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
 set termguicolors

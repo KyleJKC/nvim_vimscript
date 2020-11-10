@@ -12,7 +12,6 @@ let g:coc_global_extensions = [
       \ 'coc-go',
       \ 'coc-snippets',
       \ 'coc-yaml',
-      \ 'coc-git',
       \ 'coc-vimlsp',
       \ 'coc-highlight',
       \ 'coc-spell-checker',

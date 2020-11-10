@@ -1,3 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =5
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/home/kyle/.config/polybar/configs'
+let g:netrw_dirhist_9='/home/kyle/Enigma-V-2.0/enigma/.config'
+let g:netrw_dirhist_8='/home/kyle/Enigma-V-2.0/enigma'
+let g:netrw_dirhist_7='/home/kyle/.config/polybar/fonts'
+let g:netrw_dirhist_6='/home/kyle'
 let g:netrw_dirhist_5='/home/kyle/.config/fcitx5/conf'

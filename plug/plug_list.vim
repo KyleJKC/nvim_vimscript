@@ -8,7 +8,9 @@ call plug#begin('~/.config/nvim/plugged')
 "美化插件
 Plug 'hardcoreplayers/spaceline.vim'
 Plug 'hardcoreplayers/vim-buffet'
-Plug 'ryanoasis/vim-devicons'
+Plug 'kyazdani42/nvim-web-devicons'
+
+"Plug 'ryanoasis/vim-devicons'
 Plug 'hardcoreplayers/dashboard-nvim'
 Plug 'Yggdroot/indentLine',{ 'for': ['c', 'h', 'cpp', 'py', 'json', 'go', 'java', 'vim', 'hs'] }
 "主题插件
@@ -32,6 +34,7 @@ Plug 'kristijanhusak/defx-git', {'on':'Defx'}
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins'}
 Plug 'kristijanhusak/defx-icons'
 Plug 'voldikss/vim-floaterm', { 'on': 'FloatermNew' }
+Plug 'kevinhwang91/rnvimr', {'on': 'RnvimrToggle'}
 Plug 'sbdchd/neoformat', {'on':'Neoformat'}
 Plug 'honza/vim-snippets',{ 'for': ['c', 'h', 'cpp', 'py', 'json', 'go', 'java', 'vim', 'hs'] }
 Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
@@ -42,6 +45,6 @@ Plug 'junegunn/fzf.vim', {'on':['Files', 'History', 'Colors', 'Rg', 'Marks']}
 Plug 'scrooloose/nerdcommenter'
 Plug 'neoclide/coc.nvim',{'branch':'release'}
 Plug 'jiangmiao/auto-pairs'
-Plug 'sheerun/vim-polyglot',{'for':['c', 'h', 'cpp', 'py', 'go', 'java', 'vim', 'json', 'hs']}
+" Plug 'sheerun/vim-polyglot',{'for':['c', 'h', 'cpp', 'py', 'go', 'java', 'vim', 'json', 'hs']}
 
 call plug#end()

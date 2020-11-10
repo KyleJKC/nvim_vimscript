@@ -19,49 +19,6 @@ vmap gx <Plug>(openbrowser-smart-search)
 nmap gu <Plug>(openbrowser-open)
 vmap gu <Plug>(openbrowser-open)
 
-"Goyo设置
-noremap <LEADER>gy :Goyo<CR>
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
-let g:limelight_conceal_ctermfg = 'gray'
-let g:limelight_conceal_ctermfg = 240
-let g:limelight_conceal_guifg = 'DarkGray'
-let g:limelight_conceal_guifg = '#777777'
-let g:limelight_default_coefficient = 0.7
-let g:limelight_paragraph_span = 1
-let g:limelight_bop = '^\s'
-let g:limelight_eop = '\ze\n^\s'
-let g:limelight_priority = -1
-function! s:goyo_enter()
-	if has('gui_running')
-		set fullscreen
-		set background=light
-		set linespace=7
-	elseif exists('$TMUX')
-		silent !tmux set status off
-	endif
-	let g:loaded_spaceline=0
-	Limelight
-endfunction
-function! s:goyo_leave()
-	if has('gui_running')
-		set nofullscreen
-		set background=dark
-		set linespace=0
-	elseif exists('$TMUX')
-		silent !tmux set status on
-	endif
-	let g:loaded_spaceline =1
-	Limelight!
-endfunction
-augroup user_plugin_goyo
-	autocmd!
-	autocmd! User GoyoEnter
-	autocmd! User GoyoLeave
-	autocmd  User GoyoEnter nested call <SID>goyo_enter()
-	autocmd  User GoyoLeave nested call <SID>goyo_leave()
-augroup END
-
 " CompleteParameter设置
 inoremap <silent><expr> ( complete_parameter#pre_complete("()")
 smap <c-j> <Plug>(complete_parameter#goto_next_parameter)

@@ -1,4 +1,11 @@
 {
+  "languageserver": {
+    "lua": {
+      "command": "lua-lsp",
+      "filetypes": ["lua"]
+    }
+  },
+
   "coc.preferences.extensionUpdateCheck": "daily",
   "suggest.triggerAfterInsertEnter": false,
   "suggest.timeout": 500,
@@ -152,5 +159,5 @@
     "yml",
     "vim"
   ],
-  "cSpell.userWords": ["Bilibili", "Floaterm", "wsdjeg"]
+  "cSpell.userWords": ["Bilibili", "Floaterm", "Rnvimr", "wsdjeg"]
 }
