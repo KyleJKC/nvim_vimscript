@@ -109,12 +109,13 @@ noremap <c-d> :BD<CR>
 
 let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.6 } }
 
-"Indentline设置
+" Indentline设置
 let g:indentLine_enabled = 1
 let g:indentLine_char='┆'
 let g:indentLine_fileTypeExclude = ['defx', 'denite','startify','tagbar','vista_kind','vista','coc-explorer','dashboard']
 let g:indentLine_concealcursor = 'niv'
 let g:indentLine_showFirstIndentLevel =1
+
 
 "MarkdownPreview设置
 let g:instant_markdown_autostart = 0
@@ -323,9 +324,8 @@ let g:dashboard_custom_shortcut={
 			\ }
 noremap <LEADER>fn :DashboardNewFile<CR>
 
-"spaceline设置
-let g:spaceline_seperate_style= 'slant-cons'
-let g:spaceline_git_branch_icon= ' '
+"Galaxyline设置
+luafile ~/.config/nvim/theme/eviline.lua
 
 "vim-easy-align设置
 xmap ga <Plug>(EasyAlign)

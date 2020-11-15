@@ -71,6 +71,8 @@
   //CocList
   "list.source.files.defaultOptions": ["--auto-preview"],
   "list.source.outline.defaultOptions": ["--auto-preview"],
+  //Pairs
+  "pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"],
   //prettier
   "coc.preferences.formatOnSaveFiletypes": [
     "html",
